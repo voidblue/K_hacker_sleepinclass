@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/firstmenu"
-            android:enabled="true"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="411강의실"
-            android:visible="true" />
-        <item
-            android:id="@+id/secondmenu"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="414강의실" />
-        <item
-            android:id="@+id/thirdmenu"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="416실습실" />
-        <item
-            android:id="@+id/forthmenu"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="417실습실" />
-    </group>
+    <!--<group android:checkableBehavior="single">-->
+        <!--<item-->
+            <!--android:id="@+id/firstmenu"-->
+            <!--android:enabled="true"-->
+            <!--android:icon="@drawable/ic_menu_camera"-->
+            <!--android:title="411강의실"-->
+            <!--android:visible="true" />-->
+        <!--<item-->
+            <!--android:id="@+id/secondmenu"-->
+            <!--android:icon="@drawable/ic_menu_gallery"-->
+            <!--android:title="414강의실" />-->
+        <!--<item-->
+            <!--android:id="@+id/thirdmenu"-->
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+            <!--android:title="416실습실" />-->
+        <!--<item-->
+            <!--android:id="@+id/forthmenu"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="417실습실" />-->
+    <!--</group>-->
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

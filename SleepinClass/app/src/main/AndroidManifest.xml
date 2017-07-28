@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.voidbluelabtop.sleepinclass">
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- 블루투스 기능을 사용하기 위해 필요한 권한입니다. -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
 
     <!-- 비콘에 필요한 권한 -->
     <application
@@ -32,7 +36,12 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Beacon.BeaconView"></activity>
+        <activity
+            android:name=".Beacon.BeaconView"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CLASS.Createclass" />
+        <activity android:name=".CLASS.classtime" />
+        <activity android:name=".CLASS.Settimedialog"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.voidbluelabtop.sleepinclass.DATA;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.SharedPreferences;
 import android.preference.PreferenceActivity;
 
@@ -9,14 +10,16 @@ import android.preference.PreferenceActivity;
  */
 
 public class Preference{
-    private Activity Act;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
 
 
     public Preference(Activity Act) {
-        this.Act = Act;
-        pref = this.Act.getSharedPreferences("DATA",0);
+        pref = Act.getSharedPreferences("DATA",0);
+        editor = pref.edit();
+    }
+    public Preference(Service Serv) {
+        pref = Serv.getSharedPreferences("DATA",0);
         editor = pref.edit();
     }
 
@@ -45,6 +48,8 @@ public class Preference{
         temp = pref.getString(Key, "");
         return temp;
     }
+
+
 
     public void putData(String Key, boolean data){
         editor.putBoolean(Key, data);

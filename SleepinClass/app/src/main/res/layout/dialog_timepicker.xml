@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+
+    tools:context="com.example.voidbluelabtop.sleepinclass.CLASS.Settimedialog">
+
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="303dp"
+        android:layout_height="412dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-12dp" />
+
+    <Button
+        android:id="@+id/btn_timeaccept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/timePicker"
+        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_timecancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="취소"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
+        android:layout_marginRight="19dp"
+        app:layout_constraintRight_toRightOf="@+id/timePicker" />
+
+    <Button
+        android:id="@+id/btn_setday"
+        android:layout_width="62dp"
+        android:layout_height="47dp"
+        android:text="요일변경"
+        android:background="@color/colorAccent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/timePicker"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.05" />
+</android.support.constraint.ConstraintLayout>

@@ -10,30 +10,37 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.ActionProvider;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.inputmethod.CorrectionInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.alamkanak.weekview.WeekViewUtil;
 import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconDetect;
 import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconView;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.DATA.Singleton_tempdata;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -62,7 +69,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu xxx = navigationView.getMenu();
+        int idcode = 0;
 
+        if (idcode == 0) {
+            xxx.add("강의 개설");
+            xxx.add("강사메뉴2");
+            xxx.add("강사메뉴3");
+
+            xxx.getItem(0).setIcon(R.drawable.ic_menu_camera);
+        }
 
         Intent beacondetect = new Intent(getApplicationContext(), BeaconDetect.class);
         startService(beacondetect);
@@ -97,6 +113,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             mWeekView.setHourHeight((height - mWeekView.getHeaderRowPadding() - mWeekView.getHeaderColumnPadding())
                     /12 - mWeekView.getColumnGap());
         }
+        //스크롤 불가능하게 막아두기
         mWeekView.setVerticalFlingEnabled(false);
         mWeekView.setScrollListener(null);
 
@@ -105,17 +122,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         //             앱이켜지면 비콘 탐지 서비스시작
         //
 
+
         ActivityCompat.requestPermissions(this, new String[]{
                         Manifest.permission.ACCESS_COARSE_LOCATION},32);
         Intent beacondetectservice = new Intent(getApplicationContext(), BeaconDetect.class);
         startService(beacondetectservice);
+;
 
-        int usercode = 0;
 
-        if(usercode == 0) {
-            MenuItem xxx = (MenuItem) findViewById(R.id.firstmenu);
-            xxx.setTitle("강의개설");
-        }
+
+
     }
 
     @Override
@@ -152,6 +168,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Log.d("", "onBackPressed: " + drawer.getChildAt(0));
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -186,19 +203,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        String title = (String)item.getTitle();
 //        Intent intent_Class = new Intent(getApplicationContext(), Classroom_setting.class);
-        if (id == R.id.firstmenu) {
-            ST.setclassroom("411강의실");
+        if (title.equals("강의 개설")) {
             Intent i = new Intent(getApplicationContext(), BeaconView.class);
             startActivity(i);
-        } else if (id == R.id.secondmenu) {
-            ST.setclassroom("414강의실");
-        } else if (id == R.id.thirdmenu) {
-            ST.setclassroom("416강의실");
-        } else if (id == R.id.forthmenu) {
-            ST.setclassroom("417강의실");
         }
+//        } else if (id == R.id.secondmenu) {
+//            ST.setclassroom("414강의실");
+//        } else if (id == R.id.thirdmenu) {
+//            ST.setclassroom("416강의실");
+//        } else if (id == R.id.forthmenu) {
+//            ST.setclassroom("417강의실");
+//        }
 
 //        startActivity(intent_Class);
 
@@ -227,6 +244,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
 
         Calendar startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.HOUR_OF_DAY, 3);
         startTime.set(Calendar.MINUTE, 0);
         startTime.set(Calendar.MONTH, newMonth - 1);
@@ -239,6 +257,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.HOUR_OF_DAY, 3);
         startTime.set(Calendar.MINUTE, 30);
         startTime.set(Calendar.MONTH, newMonth-1);
@@ -252,6 +271,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.HOUR_OF_DAY, 4);
         startTime.set(Calendar.MINUTE, 20);
         startTime.set(Calendar.MONTH, newMonth-1);
@@ -264,6 +284,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.HOUR_OF_DAY, 5);
         startTime.set(Calendar.MINUTE, 30);
         startTime.set(Calendar.MONTH, newMonth-1);
@@ -276,6 +297,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.HOUR_OF_DAY, 5);
         startTime.set(Calendar.MINUTE, 0);
         startTime.set(Calendar.MONTH, newMonth - 1);
@@ -289,6 +311,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.DAY_OF_MONTH, 15);
         startTime.set(Calendar.HOUR_OF_DAY, 3);
         startTime.set(Calendar.MINUTE, 0);
@@ -301,6 +324,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.DAY_OF_MONTH, 1);
         startTime.set(Calendar.HOUR_OF_DAY, 3);
         startTime.set(Calendar.MINUTE, 0);
@@ -313,6 +337,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.DAY_OF_MONTH, startTime.getActualMaximum(Calendar.DAY_OF_MONTH));
         startTime.set(Calendar.HOUR_OF_DAY, 15);
         startTime.set(Calendar.MINUTE, 0);
@@ -326,6 +351,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //AllDay event
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.HOUR_OF_DAY, 0);
         startTime.set(Calendar.MINUTE, 0);
         startTime.set(Calendar.MONTH, newMonth-1);
@@ -338,6 +364,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         events.add(event);
 
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.DAY_OF_MONTH, 8);
         startTime.set(Calendar.HOUR_OF_DAY, 2);
         startTime.set(Calendar.MINUTE, 0);
@@ -352,6 +379,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         // All day event until 00:00 next day
         startTime = Calendar.getInstance();
+        startTime.setTime(WeekViewUtil.nearestmonday().getTime());
         startTime.set(Calendar.DAY_OF_MONTH, 10);
         startTime.set(Calendar.HOUR_OF_DAY, 0);
         startTime.set(Calendar.MINUTE, 0);

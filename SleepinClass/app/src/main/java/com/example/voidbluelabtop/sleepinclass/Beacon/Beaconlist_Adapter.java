@@ -1,7 +1,6 @@
 package com.example.voidbluelabtop.sleepinclass.Beacon;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,10 @@ public class Beaconlist_Adapter extends BaseAdapter{
     String Major, classroom, distance;
     Beaconlist_Adapter(){
         SB = Singlton_BeaconList.getInstance();
+        beaconlist = SB.get_beaconlist();
+    }
+
+    public void refresh(){
         beaconlist = SB.get_beaconlist();
     }
 
@@ -53,7 +56,7 @@ public class Beaconlist_Adapter extends BaseAdapter{
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         TextView beaconmajor = (TextView) convertView.findViewById(R.id.beaconmajor) ;
-        TextView beaconclassroom = (TextView) convertView.findViewById(R.id.classroom) ;
+        TextView beaconclassroom = (TextView) convertView.findViewById(R.id.TV_classroom) ;
         TextView beacondistance = (TextView) convertView.findViewById(R.id.distance) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
@@ -66,8 +69,6 @@ public class Beaconlist_Adapter extends BaseAdapter{
         beacondistance.setText(Float.toString(beacon.getRssi()));
 
         return convertView;
-
-
     }
 
 }

@@ -4,11 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.voidbluelabtop.sleepinclass.Beacon.BeaconView">
+    tools:context="com.example.voidbluelabtop.sleepinclass.Beacon.BeaconView"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
 
-        <ListView
-            android:id="@+id/beaconlist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_margin="0dp"
+        android:id="@+id/toolbar2"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/beaconlist"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:theme="@style/Toolbar"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:titleTextColor="#ffffff">
+            <!--<TextView android:layout_height="match_parent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:text="강의 개설"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:layout_weight="1"/>-->
+
+
+            <ImageButton
+                android:id="@+id/btn_refresh"
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_close"
+                tools:layout_editor_absoluteY="16dp"
+                />
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/beaconlist"
+        android:layout_width="0dp"
+        android:layout_height="496dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="48dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ListView>
+
 </android.support.constraint.ConstraintLayout>
