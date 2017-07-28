@@ -1,21 +1,36 @@
 package com.example.voidbluelabtop.sleepinclass.MainView;
 
+import android.Manifest;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.view.ActionProvider;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconDetect;
+import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconView;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.DATA.Singleton_tempdata;
 
@@ -24,13 +39,15 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    private boolean isstudent;
     Singleton_tempdata ST;
+    MenuItem firstmenu, secondmenu, thirdmenu, forthmenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainview);
-        setTitle("수업시간엔 좀 자라");
+        setTitle("출결 캡스");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ST = Singleton_tempdata.getInstance();
@@ -42,11 +59,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
 
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        Intent beacondetect = new Intent(getApplicationContext(), BeaconDetect.class);
-//        startService(beacondetect);
+
+        Intent beacondetect = new Intent(getApplicationContext(), BeaconDetect.class);
+        startService(beacondetect);
 
 
 
@@ -74,7 +93,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int height = dm.heightPixels;
-        Toast.makeText(this, "" + height +"     " + y, Toast.LENGTH_SHORT).show();
         if(height < y){
             mWeekView.setHourHeight((height - mWeekView.getHeaderRowPadding() - mWeekView.getHeaderColumnPadding())
                     /12 - mWeekView.getColumnGap());
@@ -83,13 +101,53 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mWeekView.setScrollListener(null);
 
         setupDateTimeInterpreter(false);
+
+        //             앱이켜지면 비콘 탐지 서비스시작
+        //
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.ACCESS_COARSE_LOCATION},32);
+        Intent beacondetectservice = new Intent(getApplicationContext(), BeaconDetect.class);
+        startService(beacondetectservice);
+
+        int usercode = 0;
+
+        if(usercode == 0) {
+            MenuItem xxx = (MenuItem) findViewById(R.id.firstmenu);
+            xxx.setTitle("강의개설");
+        }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 32: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
 
     //폰 고유번호 가져오기
     public void precess() {
         TelephonyManager manager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         String xxx = manager.getDeviceId(); }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -123,40 +181,46 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 //        Intent intent_Class = new Intent(getApplicationContext(), Classroom_setting.class);
-        if (id == R.id.class411) {
+        if (id == R.id.firstmenu) {
             ST.setclassroom("411강의실");
-        } else if (id == R.id.class414) {
-
+            Intent i = new Intent(getApplicationContext(), BeaconView.class);
+            startActivity(i);
+        } else if (id == R.id.secondmenu) {
             ST.setclassroom("414강의실");
-        } else if (id == R.id.class416) {
+        } else if (id == R.id.thirdmenu) {
             ST.setclassroom("416강의실");
-        } else if (id == R.id.class417) {
+        } else if (id == R.id.forthmenu) {
             ST.setclassroom("417강의실");
         }
+
 //        startActivity(intent_Class);
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    
+
+
 
 
 
 
     //////////////////////////////////////////////////////////
     //                                                      //
-    //         타임테이블에 시간표 넣는 부분                    //
+    //         타임테이블에 시간표 넣는 부분                     //
     //                                                      //
     //////////////////////////////////////////////////////////
-
+    //TODO 데이터베이스에서 받아온값을 넣을수 있도록 해보자
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.

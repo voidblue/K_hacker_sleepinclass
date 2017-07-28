@@ -3,7 +3,6 @@ package com.example.voidbluelabtop.sleepinclass.MainView;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
