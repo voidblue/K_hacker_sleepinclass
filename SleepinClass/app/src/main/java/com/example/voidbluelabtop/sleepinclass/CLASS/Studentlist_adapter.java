@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.Beacon;
+package com.example.voidbluelabtop.sleepinclass.CLASS;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,30 +8,29 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.estimote.coresdk.recognition.packets.Beacon;
+import com.example.voidbluelabtop.sleepinclass.Beacon.Singlton_BeaconList;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.List;
 
 /**
- * Created by voidbluelabtop on 17. 7. 26.
+ * Created by voidbluelabtop on 17. 7. 29.
  */
 
-public class Beaconlist_Adapter extends BaseAdapter{
-    Singlton_BeaconList SB;
-    List<Beacon> beaconlist;
+
+//데이터베이스에서 받아온 값을 기초로 해야함
+public class Studentlist_adapter extends BaseAdapter {
+    List<Beacon> Students_list;
     String Major, classroom, distance;
-    Beaconlist_Adapter(){
-        SB = Singlton_BeaconList.getInstance();
-        beaconlist = SB.get_beaconlist();
+    Studentlist_adapter(){
     }
 
     public void refresh(){
-        beaconlist = SB.get_beaconlist();
     }
 
     @Override
     public int getCount() {
-        return beaconlist.size();
+        return 0;
     }
 
     @Override
@@ -61,14 +60,11 @@ public class Beaconlist_Adapter extends BaseAdapter{
         TextView beaconID = (TextView) convertView.findViewById(R.id.TV_beaconid) ;
         TextView beacondistance = (TextView) convertView.findViewById(R.id.TV_distance) ;
 
-        // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        Beacon beacon = beaconlist.get(position);
-
         // 아이템 내 각 위젯에 데이터 반영
         //TODO 데아터베이스 이용해볼것
         String classroom = "";
-        beaconID.setText(classroom + "(" + beacon.getMajor() + ")");
-        beacondistance.setText(Float.toString(beacon.getRssi()));
+//        beaconID.setText(classroom + "(" + beacon.getMajor() + ")");
+//        beacondistance.setText(Float.toString(beacon.getRssi()));
 
         return convertView;
     }

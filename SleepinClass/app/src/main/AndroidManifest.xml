@@ -24,11 +24,7 @@
             android:name=".MainView.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -41,7 +37,22 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CLASS.Createclass" />
         <activity android:name=".CLASS.classtime" />
-        <activity android:name=".CLASS.Settimedialog"></activity>
+        <activity android:name=".CLASS.Settimedialog" />
+        <activity
+            android:name=".CLASS.Manage_students"
+            android:label="@string/title_activity_manage_students"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CLASS.Enroll_class"
+            android:label="@string/title_activity_enroll_class"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainView.IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

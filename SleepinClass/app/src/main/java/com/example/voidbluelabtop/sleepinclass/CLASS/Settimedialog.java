@@ -21,7 +21,7 @@ public class Settimedialog extends Dialog{
         btn_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO 요일 설정할수 있ㄱ 뭔가 만들어볼것
+                //TODO 요일 설정할수 있게 뭔가 만들어볼것
                 btn_day.setText("바뀐요일");
             }
         });
@@ -35,7 +35,7 @@ public class Settimedialog extends Dialog{
             }
         });
 
-        btn_timecancel = findViewById(R.id.btn_timeccancel);
+        btn_timecancel = findViewById(R.id.btn_timecancel);
         btn_timecancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -54,7 +54,6 @@ public class Createclass extends Dialog {
                 dismiss();
             }
         });
-
         btn_classtime = (Button) findViewById(R.id.btn_settime);
         btn_classtime.setOnClickListener(new View.OnClickListener() {
             @Override

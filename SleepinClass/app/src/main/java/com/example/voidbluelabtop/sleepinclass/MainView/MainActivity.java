@@ -37,6 +37,7 @@ import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
 import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconDetect;
 import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconView;
+import com.example.voidbluelabtop.sleepinclass.CLASS.Manage_students;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.DATA.Singleton_tempdata;
 
@@ -69,16 +70,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        Menu xxx = navigationView.getMenu();
-        int idcode = 0;
-
-        if (idcode == 0) {
-            xxx.add("강의 개설");
-            xxx.add("강사메뉴2");
-            xxx.add("강사메뉴3");
-
-            xxx.getItem(0).setIcon(R.drawable.ic_menu_camera);
-        }
+//        Menu xxx = navigationView.getMenu();
+//        int idcode = 0;
+//
+//        if (idcode == 0) {
+//            xxx.add("강의 개설");
+//            xxx.add("강사메뉴2");
+//            xxx.add("강사메뉴3");
+//
+//            xxx.getItem(0).setIcon(R.drawable.ic_menu_camera);
+//        }
 
         Intent beacondetect = new Intent(getApplicationContext(), BeaconDetect.class);
         startService(beacondetect);
@@ -205,20 +206,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         // Handle navigation view item clicks here.
         String title = (String)item.getTitle();
 //        Intent intent_Class = new Intent(getApplicationContext(), Classroom_setting.class);
-        if (title.equals("강의 개설")) {
+        int id = item.getItemId();
+        if (id == R.id.item_createclass) {
             Intent i = new Intent(getApplicationContext(), BeaconView.class);
             startActivity(i);
         }
-//        } else if (id == R.id.secondmenu) {
-//            ST.setclassroom("414강의실");
-//        } else if (id == R.id.thirdmenu) {
-//            ST.setclassroom("416강의실");
-//        } else if (id == R.id.forthmenu) {
-//            ST.setclassroom("417강의실");
-//        }
-
-//        startActivity(intent_Class);
-
+        else if (id == R.id.item_managestudent) {
+            Intent i = new Intent(getApplicationContext(), Manage_students.class);
+            startActivity(i);
+        } else if (id == R.id.item_attandent_forprofessor) {
+            //TODO
+        } else if (id == R.id.item_enrollclass) {
+            //TODO
+        }
 
 
 

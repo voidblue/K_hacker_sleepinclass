@@ -2,6 +2,7 @@ package com.example.voidbluelabtop.sleepinclass.Beacon;
 
 import com.estimote.coresdk.recognition.packets.Beacon;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Singlton_BeaconList {
 
     private List<Beacon> beaconlist;
     private Singlton_BeaconList() {
+        beaconlist = new ArrayList<>();
     }
 
 
