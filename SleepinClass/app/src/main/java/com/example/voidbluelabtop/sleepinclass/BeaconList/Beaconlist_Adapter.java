@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.Beacon;
+package com.example.voidbluelabtop.sleepinclass.BeaconList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,7 +20,7 @@ public class Beaconlist_Adapter extends BaseAdapter{
     Singlton_BeaconList SB;
     List<Beacon> beaconlist;
     String Major, classroom, distance;
-    Beaconlist_Adapter(){
+    public Beaconlist_Adapter(){
         SB = Singlton_BeaconList.getInstance();
         beaconlist = SB.get_beaconlist();
     }
@@ -45,13 +45,12 @@ public class Beaconlist_Adapter extends BaseAdapter{
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
         final Context context = parent.getContext();
 
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.beaconlist_item, parent, false);
+            convertView = inflater.inflate(R.layout.item_beaconlist, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득

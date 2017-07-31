@@ -1,9 +1,8 @@
-package com.example.voidbluelabtop.sleepinclass.DATA;
+package com.example.voidbluelabtop.sleepinclass.USERDATA;
 
 import android.app.Activity;
 import android.app.Service;
 import android.content.SharedPreferences;
-import android.preference.PreferenceActivity;
 
 /**
  * Created by voidbluelabtop on 17. 6. 25.

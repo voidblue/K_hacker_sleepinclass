@@ -1,51 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="400dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    tools:context="com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Settimedialog"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
-    tools:context="com.example.voidbluelabtop.sleepinclass.CLASS.Settimedialog">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="123dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="시작 시간"
+            android:textSize="30dp" />
+
+        <Spinner
+            android:id="@+id/SP_setday"
+            android:layout_width="123dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
     <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="303dp"
-        android:layout_height="412dp"
+        android:id="@+id/TP_starttime"
+        android:layout_width="246dp"
+        android:layout_height="150dp"
+        android:timePickerMode="spinner"
+        tools:layout_editor_absoluteX="-10dp"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="132dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="116dp"
+        android:text="종료 시간"
+        android:textSize="30dp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-12dp" />
+        tools:layout_editor_absoluteY="190dp" />
 
-    <Button
-        android:id="@+id/btn_timeaccept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="확인"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/timePicker"
-        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
-        android:layout_marginBottom="16dp" />
+    <TimePicker
+        android:id="@+id/TP_endtime"
+        android:layout_width="246dp"
+        android:layout_height="150dp"
+        android:timePickerMode="spinner"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="230dp" />
 
-    <Button
-        android:id="@+id/btn_timecancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="취소"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
-        android:layout_marginRight="19dp"
-        app:layout_constraintRight_toRightOf="@+id/timePicker" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_setday"
-        android:layout_width="62dp"
-        android:layout_height="47dp"
-        android:text="요일변경"
-        android:background="@color/colorAccent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/timePicker"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.05" />
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_timeaccept"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="380dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="46dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_timecancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="49dp"
+            android:text="취소"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="380dp" />
+    </LinearLayout>
+
+</LinearLayout>

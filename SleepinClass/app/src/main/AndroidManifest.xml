@@ -23,27 +23,21 @@
         <activity
             android:name=".MainView.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".Beacon.BeaconDetect"
+            android:name=".BeaconList.BeaconDetect"
             android:enabled="true"
             android:exported="true" />
 
         <activity
-            android:name=".Beacon.BeaconView"
+            android:name=".FOTPROFESSOR.CreateClass"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CLASS.Createclass" />
+        <activity android:name=".FOTPROFESSOR.Inform_class_Dialog" />
         <activity android:name=".CLASS.classtime" />
-        <activity android:name=".CLASS.Settimedialog" />
+        <activity android:name=".FOTPROFESSOR.Settimedialog" />
         <activity
-            android:name=".CLASS.Manage_students"
-            android:label="@string/title_activity_manage_students"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".CLASS.Enroll_class"
+            android:name=".FOTSTUDENT.Enroll_class"
             android:label="@string/title_activity_enroll_class"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainView.IntroActivity">
@@ -53,6 +47,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FOTPROFESSOR.Manage_student" />
+        <activity android:name=".FOTPROFESSOR.Attantant_Manager" />
+        <activity android:name=".FOTPROFESSOR.MyClasslist"></activity>
     </application>
 
 </manifest>

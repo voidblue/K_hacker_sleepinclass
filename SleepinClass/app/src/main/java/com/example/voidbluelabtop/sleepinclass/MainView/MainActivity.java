@@ -1,54 +1,38 @@
 package com.example.voidbluelabtop.sleepinclass.MainView;
 
 import android.Manifest;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ActionProvider;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SubMenu;
-import android.view.View;
-import android.view.inputmethod.CorrectionInfo;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
-import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconDetect;
-import com.example.voidbluelabtop.sleepinclass.Beacon.BeaconView;
-import com.example.voidbluelabtop.sleepinclass.CLASS.Manage_students;
+import com.example.voidbluelabtop.sleepinclass.BeaconList.BeaconDetect;
+import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Attantant_Manager;
+import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.CreateClass;
+import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Manage_student;
+import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.MyClasslist;
 import com.example.voidbluelabtop.sleepinclass.R;
-import com.example.voidbluelabtop.sleepinclass.DATA.Singleton_tempdata;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends WeekView_BASE implements NavigationView.OnNavigationItemSelectedListener {
     private boolean isstudent;
-    Singleton_tempdata ST;
     MenuItem firstmenu, secondmenu, thirdmenu, forthmenu;
 
     @Override
@@ -58,7 +42,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setTitle("출결 캡스");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ST = Singleton_tempdata.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -208,14 +191,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //        Intent intent_Class = new Intent(getApplicationContext(), Classroom_setting.class);
         int id = item.getItemId();
         if (id == R.id.item_createclass) {
-            Intent i = new Intent(getApplicationContext(), BeaconView.class);
+            Intent i = new Intent(getApplicationContext(), CreateClass.class);
             startActivity(i);
         }
         else if (id == R.id.item_managestudent) {
-            Intent i = new Intent(getApplicationContext(), Manage_students.class);
+            Intent i = new Intent(getApplicationContext(), MyClasslist.class);
             startActivity(i);
         } else if (id == R.id.item_attandent_forprofessor) {
-            //TODO
+            Intent i = new Intent(getApplicationContext(), MyClasslist.class);
+            startActivity(i);
         } else if (id == R.id.item_enrollclass) {
             //TODO
         }
