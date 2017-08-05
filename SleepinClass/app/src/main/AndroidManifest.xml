@@ -31,13 +31,12 @@
             android:exported="true" />
 
         <activity
-            android:name=".FOTPROFESSOR.CreateClass"
+            android:name=".FORPROFESSOR.CreateClass"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FOTPROFESSOR.Inform_class_Dialog" />
-        <activity android:name=".CLASS.classtime" />
-        <activity android:name=".FOTPROFESSOR.Settimedialog" />
+        <activity android:name=".FORPROFESSOR.Inform_class_Dialog" />
+        <activity android:name=".FORPROFESSOR.Settimedialog" />
         <activity
-            android:name=".FOTSTUDENT.Enroll_class"
+            android:name=".FORSTUDENT.Enroll_class"
             android:label="@string/title_activity_enroll_class"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainView.IntroActivity">
@@ -47,9 +46,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FOTPROFESSOR.Manage_student" />
-        <activity android:name=".FOTPROFESSOR.Attantant_Manager" />
-        <activity android:name=".FOTPROFESSOR.MyClasslist"></activity>
+        <activity
+            android:name=".FORPROFESSOR.Manage_student"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FORPROFESSOR.Attantant_Manager"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FORPROFESSOR.MyClasslist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainView.NoticeLicense"></activity>
     </application>
 
 </manifest>

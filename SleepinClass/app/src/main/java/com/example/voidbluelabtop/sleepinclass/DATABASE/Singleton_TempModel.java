@@ -32,11 +32,11 @@ public class Singleton_TempModel {
         classtable.add(classelement);
     }
 
-    public void addstudent(String classcode, String studentcode, String studentname){
+    public void addstudent( String studentname, String studentmajor, String studentcode){
         student = new ArrayList();
-        student.add(classcode);
-        student.add(studentcode);
         student.add(studentname);
+        student.add(studentmajor);
+        student.add(studentcode);
         studenttable.add(student);
     }
 
@@ -58,6 +58,7 @@ public class Singleton_TempModel {
     public List getclass(){
         return classtable;
     }
+    public List getStudenttable(){return studenttable;}
 
 
 }

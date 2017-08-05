@@ -21,10 +21,10 @@ import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
 import com.example.voidbluelabtop.sleepinclass.BeaconList.BeaconDetect;
-import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Attantant_Manager;
-import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.CreateClass;
-import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Manage_student;
-import com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.MyClasslist;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
+import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.CreateClass;
+import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.MyClasslist;
+import com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Enroll_class;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.ArrayList;
@@ -34,13 +34,14 @@ import java.util.List;
 public class MainActivity extends WeekView_BASE implements NavigationView.OnNavigationItemSelectedListener {
     private boolean isstudent;
     MenuItem firstmenu, secondmenu, thirdmenu, forthmenu;
-
+    public static Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainview);
-        setTitle("출결 캡스");
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("출결 캡스");
+        toolbar.setTitleTextColor(0x99000000);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -111,7 +112,12 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
                         Manifest.permission.ACCESS_COARSE_LOCATION},32);
         Intent beacondetectservice = new Intent(getApplicationContext(), BeaconDetect.class);
         startService(beacondetectservice);
-;
+
+
+        Singleton_TempModel STM = Singleton_TempModel.getInstance();
+        STM.addstudent("학생1", "컴공","학번ㅌㅌㅌ" );
+        STM.addstudent("학생2", "건공","학번ㅊㅊㅊ" );
+        STM.addstudent("학생3", "식공","학번ㅍㅍㅍ" );
 
 
 
@@ -185,10 +191,6 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-
-        // Handle navigation view item clicks here.
-        String title = (String)item.getTitle();
-//        Intent intent_Class = new Intent(getApplicationContext(), Classroom_setting.class);
         int id = item.getItemId();
         if (id == R.id.item_createclass) {
             Intent i = new Intent(getApplicationContext(), CreateClass.class);
@@ -201,7 +203,13 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
             Intent i = new Intent(getApplicationContext(), MyClasslist.class);
             startActivity(i);
         } else if (id == R.id.item_enrollclass) {
-            //TODO
+            Intent i = new Intent(getApplicationContext(), Enroll_class.class);
+            startActivity(i);
+        } else if(id == R.id.item_attandent_forstudent){
+
+        } else if(id == R.id.item_licence){
+            Intent i = new Intent(getApplicationContext(), NoticeLicense.class);
+            startActivity(i);
         }
 
 
@@ -218,7 +226,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
 
     //////////////////////////////////////////////////////////
     //                                                      //
-    //         타임테이블에 시간표 넣는 부분                     //
+    //         타임테이블에 시간표 넣는 부분                    //
     //                                                      //
     //////////////////////////////////////////////////////////
     //TODO 데이터베이스에서 받아온값을 넣을수 있도록 해보자

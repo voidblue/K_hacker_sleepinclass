@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#66ff4081"
+    android:background="@color/maincolor"
+    android:theme="@style/AppTheme.NoActionBar"
     tools:context="com.example.voidbluelabtop.sleepinclass.MainView.IntroActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">

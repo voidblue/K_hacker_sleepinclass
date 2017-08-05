@@ -24,10 +24,12 @@ public class Classlist_adapter extends BaseAdapter {
     Singleton_TempModel ST;
     List<List> classtable;
     String Major, classroom, distance;
-    int code;
+    int mode;
+    //mode==0 학생관리, 1이면 출결내역
     public Classlist_adapter(){
         ST = Singleton_TempModel.getInstance();
         classtable = ST.getclass();
+//        this.mode = mode;
     }
 
     @Override

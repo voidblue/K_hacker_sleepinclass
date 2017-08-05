@@ -9,14 +9,17 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="#f8dac0"
+        >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            android:background="@color/maincolor"
+            android:titleTextColor="@color/accent"
+            android:subtitleTextColor="@color/accent"
+            />
 
 
     </android.support.design.widget.AppBarLayout>

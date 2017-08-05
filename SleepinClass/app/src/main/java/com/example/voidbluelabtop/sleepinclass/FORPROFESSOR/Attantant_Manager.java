@@ -1,30 +1,24 @@
-package com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR;
+package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.voidbluelabtop.sleepinclass.CLASSLIST.Classlist_adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.STUDENTLIST.Studentlist_adapter;
 
-public class Manage_student extends AppCompatActivity {
+public class Attantant_Manager extends AppCompatActivity {
 
-    Classlist_adapter CA;
+    Studentlist_adapter  SA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_student);
 
-        CA = new Classlist_adapter();
+        SA = new Studentlist_adapter(1);
 
 
         ListView listview = (ListView) findViewById(R.id.studentlist);
-        listview.setAdapter(CA);
+        listview.setAdapter(SA);
     }
-
-
-
 }

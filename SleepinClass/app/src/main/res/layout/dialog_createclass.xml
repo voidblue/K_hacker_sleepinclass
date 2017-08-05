@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Inform_class_Dialog"
+    tools:context="com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.Inform_class_Dialog"
     tools:layout_editor_absoluteY="81dp"
+    android:layout_margin="10dp"
     tools:layout_editor_absoluteX="0dp"
     android:orientation="vertical">
 

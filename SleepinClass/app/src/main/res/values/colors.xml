@@ -9,6 +9,8 @@
     <color name="grid_label_text_selected">#B3FFFFFF</color>
     <color name="grid_foreground_selected">#B3000000</color>
 
+    <color name="maincolor">#f8dac0</color>
+
     <color name="event_color_01">#59dbe0</color>
     <color name="event_color_02">#f57f68</color>
     <color name="event_color_03">#87d288</color>

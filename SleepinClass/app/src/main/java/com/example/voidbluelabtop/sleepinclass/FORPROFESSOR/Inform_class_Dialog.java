@@ -1,8 +1,7 @@
-package com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR;
+package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;

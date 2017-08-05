@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="0dp"
     android:orientation="vertical"
-    tools:context="com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR.Settimedialog"
+    tools:context="com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.Settimedialog"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 

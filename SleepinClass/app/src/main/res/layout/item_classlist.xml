@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/img_lecture"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         app:srcCompat="@drawable/lecture" />
 
     <LinearLayout
@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/TV_myclassroom"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="44dp"
             android:text="TextView" />
     </LinearLayout>
 
@@ -39,7 +39,7 @@
         <TextView
             android:id="@+id/TV_myclasstime"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="74dp"
             android:layout_weight="1"
             android:text="TextView" />
     </LinearLayout>

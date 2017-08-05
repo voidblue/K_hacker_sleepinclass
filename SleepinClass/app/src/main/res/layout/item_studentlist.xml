@@ -6,21 +6,21 @@
     <TextView
         android:id="@+id/TV_studentname"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/TV_studentmajor"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/TV_studentcode"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:text="TextView" />
 
@@ -33,7 +33,7 @@
         <Button
             android:id="@+id/btn_function"
             android:layout_width="match_parent"
-            android:layout_height="31dp"
+            android:layout_height="50dp"
             android:text="Button" />
     </LinearLayout>
 

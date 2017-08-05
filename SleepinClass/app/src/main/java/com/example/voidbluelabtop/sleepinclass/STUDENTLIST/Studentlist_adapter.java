@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.estimote.coresdk.recognition.packets.Beacon;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.List;
@@ -20,13 +21,13 @@ import java.util.List;
 
 //데이터베이스에서 받아온 값을 기초로 해야함
 public class Studentlist_adapter extends BaseAdapter {
-    List<Beacon> Students_list;
-    String Major, classroom, distance;
+    Singleton_TempModel STM;
+    List<List> students;
     int code;
     public Studentlist_adapter(int code){
-        //0이면 수강생관리
-        //1이면 출결관리
         this.code = code;
+        STM = Singleton_TempModel.getInstance();
+        students = STM.getStudenttable();
     }
 
     public void refresh(){
@@ -34,7 +35,7 @@ public class Studentlist_adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return students.size();
     }
 
     @Override
@@ -70,9 +71,9 @@ public class Studentlist_adapter extends BaseAdapter {
         // 아이템 내 각 위젯에 데이터 반영
         //TODO 데아터베이스 이용해볼것
         String classroom = "";
-        studentname.setText("이름");
-        studentmajor.setText("학과");
-        studentcode.setText("학번");
+        studentname.setText((String)students.get(pos).get(0));
+        studentmajor.setText((String)students.get(pos).get(1));
+        studentcode.setText((String)students.get(pos).get(2));
 
         //수강생 관리면 또는 출결관리면
         if(code == 0){

@@ -7,7 +7,7 @@
             android:checkable="false"
             android:checked="false"
             android:enabled="true"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/lecture"
             android:title="교수 메뉴" />
         <item
             android:id="@+id/item_createclass"
@@ -25,7 +25,7 @@
             android:checkable="false"
             android:enabled="true"
             android:id="@+id/item_studentmenu"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/student"
             android:title="학생 메뉴"
             android:visible="true" />
         <item
@@ -35,4 +35,19 @@
             android:id="@+id/item_attandent_forstudent"
             android:title="    출결 내역" />
     </group>
+    <group>
+        <item
+            android:checkable="false"
+            android:enabled="false"
+            android:title="">
+        </item>
+        <item
+            android:checkable="false"
+            android:enabled="true"
+            android:id="@+id/item_licence"
+            android:title="오픈소스 라이센스"
+            android:visible="true">
+        </item>
+    </group>
+
 </menu>

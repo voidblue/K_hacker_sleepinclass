@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.FOTPROFESSOR;
+package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +24,10 @@ public class CreateClass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beacon_view);
-        setSupportActionBar((Toolbar)findViewById(R.id.toolbar2));
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_createclass);
+        toolbar.setTitle("출결 캡스");
+        toolbar.setTitleTextColor(0x99000000);
+        setSupportActionBar(toolbar);
         Instance = this;
 
         adapter = new Beaconlist_Adapter();
@@ -56,10 +59,6 @@ public class CreateClass extends AppCompatActivity {
                 listview.setAdapter(adapter);
             }
         });
-
-
-
-
 
     }
 
