@@ -45,13 +45,13 @@ public class InputpasswordDialog extends Dialog {
                 if(password != null){
                     //TODO 패스워드가 강의실 패스워드가 일치한다면
                     if (ST.getmanagemode() == 0){
-                        Intent i = new Intent(thiscontext, Attantant_Manager.class);
+                        Intent i = new Intent(thiscontext, Manage_student.class);
                         dismiss();
                         parent.startActivity(i);
                     }
                     else if(ST.getmanagemode() == 1) {
 
-                        Intent i = new Intent(thiscontext, Manage_student.class);
+                        Intent i = new Intent(thiscontext, Attantant_Manager.class);
                         dismiss();
                         parent.startActivity(i);
                     }
