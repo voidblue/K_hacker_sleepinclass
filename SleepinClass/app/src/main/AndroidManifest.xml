@@ -55,7 +55,8 @@
         <activity
             android:name=".FORPROFESSOR.MyClasslist"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainView.NoticeLicense"></activity>
+        <activity android:name=".MainView.NoticeLicense" />
+        <activity android:name=".FORPROFESSOR.InputpasswordDialog"></activity>
     </application>
 
 </manifest>

@@ -16,7 +16,7 @@ import com.example.voidbluelabtop.sleepinclass.R;
 public class Inform_class_Dialog extends Dialog {
     private Context thiscontext;
     private Singleton_TempModel ST;
-    private String day, start, end , alltime;
+    private String alltime, major;
     Inform_class_Dialog Instance;
     TextView timetable;
     public Inform_class_Dialog(@NonNull Context context) {
@@ -50,7 +50,7 @@ public class Inform_class_Dialog extends Dialog {
                 password = new String(ET_classpassword.getText().toString());
                 place = new String(ET_classroom.getText().toString());
                 //클래스 네임을 클래스 코드로 바꿀것
-                ST.addclass(classname, password, place, alltime);
+                ST.addclass(classname, alltime, place, major, password);
                 //TODO 데이터 전부 전달해야함, 강의코드도 계산해서 반환하기
                 dismiss();
             }
@@ -74,10 +74,6 @@ public class Inform_class_Dialog extends Dialog {
     }
 
     public void settime(String day, String start, String end){
-
-        this.day = day;
-        this.start = start;
-        this.end = end;
         String time = day.charAt(0) + " " + start + " ~ " + end;
 
         if(timetable.getText().equals("강의 시간을 입력하시면 여기에 표기됩니다.")){
@@ -89,5 +85,9 @@ public class Inform_class_Dialog extends Dialog {
             alltime += "\n" + time;
         }
 
+    }
+
+    public void setMajor(int major){
+        this.major = Integer.toString(major);
     }
 }

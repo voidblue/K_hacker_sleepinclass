@@ -19,7 +19,6 @@ import java.util.List;
 public class Beaconlist_Adapter extends BaseAdapter{
     Singlton_BeaconList SB;
     List<Beacon> beaconlist;
-    String Major, classroom, distance;
     public Beaconlist_Adapter(){
         SB = Singlton_BeaconList.getInstance();
         beaconlist = SB.get_beaconlist();
@@ -70,6 +69,10 @@ public class Beaconlist_Adapter extends BaseAdapter{
         beacondistance.setText(Float.toString(beacon.getRssi()));
 
         return convertView;
+    }
+
+    public int getMajor(int pos){
+        return beaconlist.get(pos).getMajor();
     }
 
 }

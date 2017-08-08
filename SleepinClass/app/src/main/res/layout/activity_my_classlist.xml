@@ -29,7 +29,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:id="@+id/myclasslist"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />

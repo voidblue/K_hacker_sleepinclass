@@ -1,5 +1,6 @@
 package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,8 +15,8 @@ import com.example.voidbluelabtop.sleepinclass.R;
 
 public class MyClasslist extends AppCompatActivity {
     MyClasslist Instance;
+    Context thiscontext;
     Classlist_adapter CA;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class MyClasslist extends AppCompatActivity {
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_myclasslist);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0x99000000);
+        thiscontext = this.getApplicationContext();
         Instance = this;
         CA = new Classlist_adapter();
 
@@ -34,8 +36,8 @@ public class MyClasslist extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 LinearLayout lect = (LinearLayout) listview.getItemAtPosition(i);
-                Intent intent = new Intent(getApplicationContext(), Manage_student.class);
-                startActivity(intent);
+                InputpasswordDialog dialog = new InputpasswordDialog(Instance, Instance);
+                dialog.show();
             }
         });
 

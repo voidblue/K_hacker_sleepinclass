@@ -25,6 +25,7 @@ import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.CreateClass;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.MyClasslist;
 import com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Enroll_class;
+import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.ArrayList;
@@ -34,15 +35,21 @@ import java.util.List;
 public class MainActivity extends WeekView_BASE implements NavigationView.OnNavigationItemSelectedListener {
     private boolean isstudent;
     MenuItem firstmenu, secondmenu, thirdmenu, forthmenu;
+    Singleton_Tempdata tempdata;
     public static Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainview);
+
+        tempdata = Singleton_Tempdata.getInstance();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("출결 캡스");
         toolbar.setTitleTextColor(0x99000000);
         setSupportActionBar(toolbar);
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -198,9 +205,11 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
         }
         else if (id == R.id.item_managestudent) {
             Intent i = new Intent(getApplicationContext(), MyClasslist.class);
+            tempdata.setmanagemode(0);
             startActivity(i);
         } else if (id == R.id.item_attandent_forprofessor) {
             Intent i = new Intent(getApplicationContext(), MyClasslist.class);
+            tempdata.setmanagemode(1);
             startActivity(i);
         } else if (id == R.id.item_enrollclass) {
             Intent i = new Intent(getApplicationContext(), Enroll_class.class);

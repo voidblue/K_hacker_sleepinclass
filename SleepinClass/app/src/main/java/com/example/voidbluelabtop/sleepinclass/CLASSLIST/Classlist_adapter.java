@@ -62,8 +62,8 @@ public class Classlist_adapter extends BaseAdapter {
 
 
         TextView classname = (TextView) convertView.findViewById(R.id.TV_myclassname) ;
-        TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
         TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
+        TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
 
 
         // 아이템 내 각 위젯에 데이터 반영
@@ -71,8 +71,8 @@ public class Classlist_adapter extends BaseAdapter {
 
         String strclassroom = "";
         classname.setText((String)(classtable.get(pos)).get(0));
-        classroom.setText((String)(classtable.get(pos)).get(2));
-        classtime.setText((String)(classtable.get(pos)).get(3));
+        classtime.setText((String)(classtable.get(pos)).get(1));
+        classroom.setText((String)(classtable.get(pos)).get(2) + "(" + classtable.get(pos).get(3) + ")");
         Log.d("pos", "getView: " + pos + "      " + (String)(classtable.get(pos)).get(0));
         return convertView;
     }
