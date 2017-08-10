@@ -11,15 +11,15 @@ import java.util.UUID;
  * Created by voidbluelabtop on 17. 7. 26.
  */
 
-public class Singlton_BeaconList {
-    private static final Singlton_BeaconList ourInstance = new Singlton_BeaconList();
+public class Singleton_BeaconList {
+    private static final Singleton_BeaconList ourInstance = new Singleton_BeaconList();
 
-    public static Singlton_BeaconList getInstance() {
+    public static Singleton_BeaconList getInstance() {
         return ourInstance;
     }
 
     private List<Beacon> beaconlist;
-    private Singlton_BeaconList() {
+    private Singleton_BeaconList() {
         beaconlist = new ArrayList<>();
         ///테스트용 코드!!!!!
         byte[] xxx =  new byte[6];
@@ -34,7 +34,7 @@ public class Singlton_BeaconList {
         this.beaconlist = beaconlist;
     }
 
-    public List get_beaconlist(){
+    public List<Beacon> get_beaconlist(){
         return beaconlist;
     }
 

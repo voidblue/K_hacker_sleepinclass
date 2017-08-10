@@ -17,10 +17,10 @@ import java.util.List;
  */
 
 public class Beaconlist_Adapter extends BaseAdapter{
-    Singlton_BeaconList SB;
+    Singleton_BeaconList SB;
     List<Beacon> beaconlist;
     public Beaconlist_Adapter(){
-        SB = Singlton_BeaconList.getInstance();
+        SB = Singleton_BeaconList.getInstance();
         beaconlist = SB.get_beaconlist();
     }
 
