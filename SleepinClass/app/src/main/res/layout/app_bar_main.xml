@@ -9,17 +9,17 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f8dac0"
+        android:background="#f8fac0"
         >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/maincolor"
-            android:titleTextColor="@color/accent"
+            android:background="#e28d71"
             android:subtitleTextColor="@color/accent"
-            />
+            android:titleTextColor="#000000"
+            android:title="time_table"/>
 
 
     </android.support.design.widget.AppBarLayout>

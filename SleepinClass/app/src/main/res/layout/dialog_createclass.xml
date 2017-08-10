@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="280dp"
+    android:layout_height="410dp"
     tools:context="com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.Inform_class_Dialog"
     tools:layout_editor_absoluteY="81dp"
     android:layout_margin="10dp"
+    android:padding="30dp"
     tools:layout_editor_absoluteX="0dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
-
+    <TextView
+        android:id="@+id/createclass"
+        android:layout_width="276dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:text="강의 개설"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.1"
+        android:layout_marginTop="22dp">
 
         <TextView
             android:id="@+id/TV_classname"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="강의명" />
+            android:layout_height="24dp"
+            android:text="강의명"
+            android:textSize="15dp"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/ET_classname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.1">
         <TextView
             android:id="@+id/classroom"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="강의실  " />
+            android:layout_height="30dp"
+            android:text="강의실  "
+            android:textSize="15dp"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/ET_classroom"
@@ -55,15 +69,17 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.1">
 
         <TextView
             android:id="@+id/TV_classpassword"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="비밀번호" />
+            android:layout_height="29dp"
+            android:text="비밀번호"
+            android:textSize="15dp"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/ET_classpassword"
@@ -76,29 +92,45 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/TV_classtime"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="강의시간" />
+            android:layout_width="62dp"
+            android:layout_height="30dp"
+            android:text="강의시간"
+            android:textSize="15dp"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/btn_settime"
-            android:layout_width="215dp"
-            android:layout_height="wrap_content"
-            android:text="강의 시간 입력" />
+            android:layout_width="158dp"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonstyle"
+            android:text="강의 시간 입력"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/marginn"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:text="             "
+        android:textSize="15dp"/>
+
     <TextView
         android:id="@+id/TV_userinput_classtime"
-        android:layout_width="276dp"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:text="강의 시간을 입력하시면 여기에 표기됩니다." />
+        android:textSize="15dp"/>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,23 +138,22 @@
 
         <Button
             android:id="@+id/btn_accept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="확인" />
+            android:layout_width="90dp"
+            android:layout_height="43dp"
+            android:text="확인"
+            android:background="@drawable/buttonstyle"/>
 
         <TextView
             android:id="@+id/margin"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_width="43dp"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="취소" />
+            android:layout_height="43dp"
+            android:text="취소"
+            android:background="@drawable/buttonstyle"/>
 
     </LinearLayout>
 </LinearLayout>

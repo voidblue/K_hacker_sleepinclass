@@ -5,12 +5,15 @@
     <color name="colorAccent">#FF4081</color>
 
 
+
     <color name="grid_label_text_normal">#FFF</color>
     <color name="grid_label_text_selected">#B3FFFFFF</color>
     <color name="grid_foreground_selected">#B3000000</color>
 
-    <color name="maincolor">#f8dac0</color>
-
+    <color name="maincolor">#e28d71</color>
+    <color name="headercolor">#e28d71</color>
+    <color name="bacgroundcolor">#ebddb9</color>
+`
     <color name="event_color_01">#59dbe0</color>
     <color name="event_color_02">#f57f68</color>
     <color name="event_color_03">#87d288</color>
@@ -18,4 +21,6 @@
     <color name="toolbar">#efefef</color>
     <color name="toolbar_text">#8f000000</color>
     <color name="accent">#2789e4</color>
+
+
 </resources>
