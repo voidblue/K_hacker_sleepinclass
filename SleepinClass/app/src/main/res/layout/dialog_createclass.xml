@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="280dp"
-    android:layout_height="410dp"
+    android:layout_height="wrap_content"
     tools:context="com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.Inform_class_Dialog"
     tools:layout_editor_absoluteY="81dp"
     android:layout_margin="10dp"
@@ -120,14 +120,16 @@
     <TextView
         android:id="@+id/marginn"
         android:layout_width="62dp"
-        android:layout_height="wrap_content"
-        android:text="             "
+        android:layout_height="40dp"
+        android:textAlignment="viewStart"
+        android:text=""
         android:textSize="15dp"/>
 
     <TextView
         android:id="@+id/TV_userinput_classtime"
         android:layout_width="155dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:textAlignment="viewStart"
         android:textSize="15dp"/>
 
     </LinearLayout>

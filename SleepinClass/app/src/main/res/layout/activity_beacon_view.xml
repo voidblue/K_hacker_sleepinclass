@@ -53,16 +53,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageButton
-                android:id="@+id/btn_back"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0"
-                android:background="#ffffff"
-                app:srcCompat="?attr/actionModeCloseDrawable"
-                tools:layout_editor_absoluteY="16dp"></ImageButton>
-
-            <ImageButton
                 android:id="@+id/btn_refresh"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
