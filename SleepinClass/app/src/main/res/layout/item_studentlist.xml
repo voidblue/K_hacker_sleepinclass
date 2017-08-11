@@ -5,36 +5,35 @@
 
     <TextView
         android:id="@+id/TV_studentname"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="16dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="17dp"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/TV_studentmajor"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="52dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="17dp"
+        android:textColor="#000000"/>
 
     <TextView
-        android:id="@+id/TV_studentcode"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:text="TextView" />
+       android:id="@+id/TV_studentcode"
+        android:layout_width="32dp"
+        android:layout_height="40dp"
+        android:layout_weight="0.97"
+        android:text="TextView"
+        android:textSize="17dp"
+        android:textColor="#000000"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_function"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:text="" />
 
-        <Button
-            android:id="@+id/btn_function"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Button" />
     </LinearLayout>
-
-</LinearLayout>

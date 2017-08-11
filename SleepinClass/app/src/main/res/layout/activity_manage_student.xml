@@ -36,6 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:divider="#cccccc"
+        android:dividerHeight="1.2dp"
         app:layout_constraintLeft_toLeftOf="@+id/appBarLayout"
         app:layout_constraintRight_toLeftOf="@+id/appBarLayout"
         app:layout_constraintTop_toTopOf="parent" />
