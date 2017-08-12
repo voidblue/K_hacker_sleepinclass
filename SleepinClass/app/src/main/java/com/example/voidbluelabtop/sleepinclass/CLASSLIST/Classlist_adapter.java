@@ -70,7 +70,7 @@ public class Classlist_adapter extends BaseAdapter {
         //TODO 데아터베이스 이용해볼것
 
         String strclassroom = "";
-        classname.setText((String)(classtable.get(pos)).get(0));
+        classname.setText((String)(classtable.get(pos)).get(0) + "\n(" + classtable.get(pos).get(4) + ")");
         classtime.setText((String)(classtable.get(pos)).get(1));
         classroom.setText((String)(classtable.get(pos)).get(2) + "(" + classtable.get(pos).get(3) + ")");
         Log.d("pos", "getView: " + pos + "      " + (String)(classtable.get(pos)).get(0));

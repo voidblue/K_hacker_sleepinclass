@@ -50,7 +50,6 @@ public class InputpasswordDialog extends Dialog {
                         parent.startActivity(i);
                     }
                     else if(ST.getmanagemode() == 1) {
-
                         Intent i = new Intent(thiscontext, Attantant_Manager.class);
                         dismiss();
                         parent.startActivity(i);

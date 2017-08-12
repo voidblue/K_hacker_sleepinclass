@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE"/>
 
-    [출처] [Android] 안드로이드 볼륨 설정 소스코드|작성자 임종수
-
     <!-- 블루투스 기능을 사용하기 위해 필요한 권한입니다. -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -36,6 +34,7 @@
 
         <activity
             android:name=".FORPROFESSOR.CreateClass"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FORPROFESSOR.Inform_class_Dialog" />
         <activity android:name=".FORPROFESSOR.Settimedialog" />

@@ -23,12 +23,13 @@ public class Singleton_TempModel {
         attandanttable = new ArrayList();
     }
 
-    public void addclass(String classname, String time, String classroom, String beaconMajor, String password){
+    public void addclass(String classname, String time, String classroom, String beaconMajor, String classcode, String password){
         classelement = new ArrayList();
         classelement.add(classname);
         classelement.add(time);
         classelement.add(classroom);
         classelement.add(beaconMajor);
+        classelement.add(classcode);
         classelement.add(password);
         classtable.add(classelement);
     }

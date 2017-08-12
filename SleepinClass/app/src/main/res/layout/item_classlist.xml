@@ -11,21 +11,29 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/TV_myclassname"
                 android:layout_width="match_parent"
                 android:layout_height="26dp"
                 android:layout_weight="1"
                 android:text="강의명"
-                android:textSize="20dp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/TV_myclassroom"
-                android:layout_width="match_parent"
-                android:layout_height="26dp"
-                android:layout_weight="1"
-                android:text="강의실" />
+                    android:id="@+id/TV_myclassroom"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_weight="1"
+                    android:text="강의실" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/TV_myclasstime"

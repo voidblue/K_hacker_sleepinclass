@@ -1,5 +1,7 @@
 package com.example.voidbluelabtop.sleepinclass.Time;
 
+import android.util.Log;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,13 +10,27 @@ import java.util.List;
  */
 
 public class Split_Date {
+    private String[] dates;
     private String date, day, time, starttime, endtime;
     private int starthour, endhour, startminute, endminute, daycode;
-    public Split_Date(String date){
-        this.date = date;
+//    public Split_Date(String date){
+//        this.date = date;
+//    }
+    public void setdate(String date){
+        dates = date.split("\n");
+        this.date = dates[0];
+
+    }
+    public int getlength(){
+        return dates.length;
+    }
+    public void setdateline(int i){
+        this.date = dates[i];
+        process();
     }
 
-    public void process() {
+
+    private void process() {
         if (date.charAt(0) == '월'){
             day = "월";
             daycode = 1;
@@ -34,13 +50,14 @@ public class Split_Date {
             day = "금";
             daycode = 5;
         }
-        time = date.split(day)[1];
-        starttime = time.split(" : ")[0];
-        endtime = time.split(" : ")[1];
-        starthour = Integer.parseInt(starttime.split(" ~ ")[0]);
-        endhour = Integer.parseInt(endtime.split(" ~ ")[0]);
-        startminute = Integer.parseInt(starttime.split(" ~ ")[1]);
-        endminute = Integer.parseInt(time.split(" ~ ")[1]);
+        time = date.split(day + " ")[1];
+        Log.d("", "process: " + time);
+        starttime = time.split(" ~ ")[0];
+        endtime = time.split(" ~ ")[1];
+        starthour = Integer.parseInt(starttime.split(" : ")[0]);
+        endhour = Integer.parseInt(endtime.split(" : ")[0]);
+        startminute = Integer.parseInt(starttime.split(" : ")[1]);
+        endminute = Integer.parseInt(endtime.split(" : ")[1]);
 
 
     }

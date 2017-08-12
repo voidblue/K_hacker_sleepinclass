@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
@@ -49,8 +50,10 @@ public class Inform_class_Dialog extends Dialog {
                 classname = new String(ET_classname.getText().toString());
                 password = new String(ET_classpassword.getText().toString());
                 place = new String(ET_classroom.getText().toString());
+                String classcode = Integer.toString(Integer.parseInt(major) + classname.hashCode());
                 //클래스 네임을 클래스 코드로 바꿀것
-                ST.addclass(classname, alltime, place, major, password);
+                ST.addclass(classname, alltime, place, major, classcode ,password);
+                Toast.makeText(getContext(), "강의 코드는 " + classcode + "입니다.",Toast.LENGTH_LONG).show();
                 //TODO 데이터 전부 전달해야함, 강의코드도 계산해서 반환하기
                 dismiss();
             }
@@ -76,7 +79,7 @@ public class Inform_class_Dialog extends Dialog {
     public void settime(String day, String start, String end){
         String time = day.charAt(0) + " " + start + " ~ " + end;
 
-        if(timetable.getText().equals("강의 시간을 입력하시면 여기에 표기됩니다.")){
+        if(timetable.getText().equals("")){
             timetable.setText(time);
             alltime = time;
         }

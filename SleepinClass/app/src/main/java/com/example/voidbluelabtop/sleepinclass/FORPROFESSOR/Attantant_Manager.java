@@ -16,7 +16,7 @@ public class Attantant_Manager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_student);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_managestudent);
-        toolbar.setTitle("출결 캡스");
+        toolbar.setTitle("출결 관리(강사용)");
         toolbar.setTitleTextColor(0x99000000);
         SA = new Studentlist_adapter(1);
 

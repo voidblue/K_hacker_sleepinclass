@@ -43,7 +43,8 @@ public class SoundContoller {
                 if (beacon.getMajor() != beaconmajor){
                     break;
                 }
-                Split_Date SD = new Split_Date(time);
+                Split_Date SD = new Split_Date();
+                SD.setdate(time);
                 Date date = new Date();
 
                 if (date.getDay() != SD.getdaycode()) {
