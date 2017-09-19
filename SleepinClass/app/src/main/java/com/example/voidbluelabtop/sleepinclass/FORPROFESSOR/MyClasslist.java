@@ -12,11 +12,13 @@ import android.widget.ListView;
 
 import com.example.voidbluelabtop.sleepinclass.CLASSLIST.Classlist_adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
+import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 
 public class MyClasslist extends AppCompatActivity {
     MyClasslist Instance;
     Context thiscontext;
     Classlist_adapter CA;
+    Singleton_Tempdata ST;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class MyClasslist extends AppCompatActivity {
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_myclasslist);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0x99000000);
+        ST = Singleton_Tempdata.getInstance();
         thiscontext = this.getApplicationContext();
         Instance = this;
         CA = new Classlist_adapter();
@@ -35,7 +38,7 @@ public class MyClasslist extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                LinearLayout lect = (LinearLayout) listview.getItemAtPosition(i);
+                ST.setClasslistpos(i);
                 InputpasswordDialog dialog = new InputpasswordDialog(Instance, Instance);
                 dialog.show();
             }

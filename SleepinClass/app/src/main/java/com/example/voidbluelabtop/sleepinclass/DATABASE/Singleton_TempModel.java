@@ -23,6 +23,7 @@ public class Singleton_TempModel {
         attandanttable = new ArrayList();
     }
 
+    //로그인 API 제일 중요
     public void addclass(String classname, String time, String classroom, String beaconMajor, String classcode, String password){
         classelement = new ArrayList();
         classelement.add(classname);
@@ -30,7 +31,7 @@ public class Singleton_TempModel {
         classelement.add(classroom);
         classelement.add(beaconMajor);
         classelement.add(classcode);
-        classelement.add(password);
+//        classelement.add(password);
         classtable.add(classelement);
     }
 
@@ -41,7 +42,6 @@ public class Singleton_TempModel {
         student.add(studentcode);
         studenttable.add(student);
     }
-
     public void attand(String classcode, String date, String studentcode, boolean ischecked){
         attandant = new ArrayList();
         attandant.add(classcode);
@@ -51,12 +51,10 @@ public class Singleton_TempModel {
         attandanttable.add(attandanttable);
     }
 
-
-
-
     public void getxxx(){
         //이런 함수들은 컨트롤러가 받아가 처리하고 나서 각 액티비티에 적용시킬것
     }
+
     public List getclass(){
         return classtable;
     }

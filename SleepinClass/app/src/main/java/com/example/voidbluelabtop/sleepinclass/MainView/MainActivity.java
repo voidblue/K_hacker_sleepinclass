@@ -124,7 +124,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
 
 
         Singleton_TempModel STM = Singleton_TempModel.getInstance();
-        if(STM.getStudenttable().size() != 0) {
+        if(STM.getStudenttable().size() == 0) {
             STM.addstudent("학생1", "컴공", "학번ㅌㅌㅌ");
             STM.addstudent("학생2", "건공", "학번ㅊㅊㅊ");
             STM.addstudent("학생3", "식공", "학번ㅍㅍㅍ");
@@ -137,7 +137,6 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     public void onRestart(){
         super.onRestart();
         recreate();
-
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -252,10 +251,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
 
         Split_Date SD = new Split_Date();
         Singleton_TempModel ST = Singleton_TempModel.getInstance();
-
-
         WeekViewEvent event;
-
 
         for(int i = 0 ; i < ST.getclass().size() ; i++){
             

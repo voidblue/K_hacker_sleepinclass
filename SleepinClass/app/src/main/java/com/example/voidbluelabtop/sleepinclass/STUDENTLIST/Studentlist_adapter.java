@@ -24,6 +24,8 @@ public class Studentlist_adapter extends BaseAdapter {
     Singleton_TempModel STM;
     List<List> students;
     int code;
+    //code 0 : 수강생관리
+    //code 1 : 출결관리(강사용)
     public Studentlist_adapter(int code){
         this.code = code;
         STM = Singleton_TempModel.getInstance();
@@ -65,8 +67,6 @@ public class Studentlist_adapter extends BaseAdapter {
         TextView studentname = (TextView) convertView.findViewById(R.id.TV_studentname) ;
         TextView studentmajor = (TextView) convertView.findViewById(R.id.TV_studentmajor) ;
         TextView studentcode = (TextView) convertView.findViewById(R.id.TV_studentcode) ;
-        Button btn_function = (Button) convertView.findViewById(R.id.btn_function);
-
 
         // 아이템 내 각 위젯에 데이터 반영
         //TODO 데아터베이스 이용해볼것
@@ -76,25 +76,7 @@ public class Studentlist_adapter extends BaseAdapter {
         studentcode.setText((String)students.get(pos).get(2));
 
         //수강생 관리면 또는 출결관리면
-        if(code == 0){
-            btn_function.setText("삭제");
-            btn_function.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //TODO 삭제 확인 다이얼로그 띄우기
-                }
-            });
-        }
-        else if(code == 1){
-            //DB에서 출석 정보 따올것
-            btn_function.setText("출석정보");
-            btn_function.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //출석정보 바꿀수 있도록 하기
-                }
-            });
-        }
+
 
         return convertView;
     }

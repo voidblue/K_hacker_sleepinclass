@@ -7,22 +7,7 @@
     android:orientation="vertical"
     tools:context="com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Enroll_class">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="@color/maincolor"
-        android:layout_margin="0dp">
 
-        <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_enrollclass"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/maincolor"
-        android:titleTextColor="#000000"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"

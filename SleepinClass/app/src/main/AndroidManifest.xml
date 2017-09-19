@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- 블루투스 기능을 사용하기 위해 필요한 권한입니다. -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -40,7 +40,6 @@
         <activity android:name=".FORPROFESSOR.Settimedialog" />
         <activity
             android:name=".FORSTUDENT.Enroll_class"
-            android:label="@string/title_activity_enroll_class"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainView.IntroActivity">
             <intent-filter>
@@ -59,7 +58,10 @@
             android:name=".FORPROFESSOR.MyClasslist"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainView.NoticeLicense" />
-        <activity android:name=".FORPROFESSOR.InputpasswordDialog"></activity>
+        <activity android:name=".FORPROFESSOR.InputpasswordDialog" />
+        <activity android:name=".FORPROFESSOR.Student_attandant"
+            android:label="출결 내역"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

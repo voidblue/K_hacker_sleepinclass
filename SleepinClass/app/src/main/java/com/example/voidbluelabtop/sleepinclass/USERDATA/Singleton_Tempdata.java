@@ -15,6 +15,7 @@ public class Singleton_Tempdata {
     //관리모드 0  item_managestudent
     //관리모드 1  item_attandent_forprofessor
     int sound;
+    int classlistpos, studentlistpos;
     
     private Singleton_Tempdata() {
     }
@@ -32,8 +33,18 @@ public class Singleton_Tempdata {
         this.sound = sound;
 
     }
-
     public int getSound(){
         return sound;
     }
+
+    public void setClasslistpos(int pos){
+        classlistpos = pos;
+    }
+    public int getClasslistpos(){
+        return classlistpos;
+    }
+
+    public void setStudentlistpos(int pos){studentlistpos = pos;}
+    public int getStudentlistpos(){return  classlistpos;}
+
 }
