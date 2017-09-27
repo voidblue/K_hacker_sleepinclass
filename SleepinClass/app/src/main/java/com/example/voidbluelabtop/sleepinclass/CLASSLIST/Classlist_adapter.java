@@ -61,19 +61,17 @@ public class Classlist_adapter extends BaseAdapter {
 //        TextView beaconimage = (TextView) convertView.findViewById(R.id.) ;
 
 
-        TextView classname = (TextView) convertView.findViewById(R.id.TV_myclassname) ;
-        TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
-        TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
+        TextView classorder = (TextView) convertView.findViewById(R.id.tv_classorder) ;
+        TextView starttime = (TextView) convertView.findViewById(R.id.tv_starttime) ;
+        TextView attandtime = (TextView) convertView.findViewById(R.id.tv_attandtime) ;
+        TextView attand = (TextView) convertView.findViewById(R.id.tv_attand);
+        TextView late = (TextView) convertView.findViewById(R.id.tv_late);
+        TextView absent = (TextView) convertView.findViewById(R.id.tv_absent);
 
 
         // 아이템 내 각 위젯에 데이터 반영
-        //TODO 데아터베이스 이용해볼것
+        //TODO 이제 텍스트 처리하는거 넣어야되는데 귀찮다 ㅁㄴ엄ㄴ허내ㅑ눙맹뉴냐ㅓ
 
-        String strclassroom = "";
-        classname.setText((String)(classtable.get(pos)).get(0) + "\n(" + classtable.get(pos).get(4) + ")");
-        classtime.setText((String)(classtable.get(pos)).get(1));
-        classroom.setText((String)(classtable.get(pos)).get(2) + "(" + classtable.get(pos).get(3) + ")");
-        Log.d("pos", "getView: " + pos + "      " + (String)(classtable.get(pos)).get(0));
         return convertView;
     }
 
