@@ -68,11 +68,11 @@ public class Classlist_adapter extends BaseAdapter {
         TextView late = (TextView) convertView.findViewById(R.id.tv_late);
         TextView absent = (TextView) convertView.findViewById(R.id.tv_absent);
 
-
-        // 아이템 내 각 위젯에 데이터 반영
-        //TODO 이제 텍스트 처리하는거 넣어야되는데 귀찮다 ㅁㄴ엄ㄴ허내ㅑ눙맹뉴냐ㅓ
+        //TODO 이제 텍스트 처리하는거 넣어야되는데 귀찮다 ㅁㄴ엄ㄴ허내ㅑ눙맹뉴냐
 
         return convertView;
     }
+
+
 
 }

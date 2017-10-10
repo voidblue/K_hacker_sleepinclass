@@ -25,6 +25,8 @@ public class Singleton_TempModel {
 
     //로그인 API 제일 중요
     public void addclass(String classname, String time, String classroom, String beaconMajor, String classcode, String password){
+
+        //Select * from class
         classelement = new ArrayList();
         classelement.add(classname);
         classelement.add(time);
@@ -36,6 +38,7 @@ public class Singleton_TempModel {
     }
 
     public void addstudent( String studentname, String studentmajor, String studentcode){
+        //Select * from student
         student = new ArrayList();
         student.add(studentname);
         student.add(studentmajor);

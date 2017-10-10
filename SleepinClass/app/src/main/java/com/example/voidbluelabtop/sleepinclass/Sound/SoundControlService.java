@@ -27,27 +27,29 @@ public class SoundControlService extends Service {
         AM = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
         pf = new Preference(this);
 
-        int system = AM.getStreamVolume(AudioManager.STREAM_SYSTEM);
-        if (system != 0 ){
-            pf.putData("System", system);
+//        int system = AM.getStreamVolume(AudioManager.STREAM_SYSTEM);
+//        if (system != 0 ){
+//            pf.putData("System", system);
+//        }
+//        int bell = AM.getStreamVolume(AudioManager.STREAM_RING);
+//        if (bell != 0 ){
+//            pf.putData("bell", bell);
+//        }
+//        int music = AM.getStreamVolume(AudioManager.STREAM_MUSIC);
+//        if (music != 0 ){
+//            pf.putData("music", music);
+//        }
+//        int alarm = AM.getStreamVolume(AudioManager.STREAM_ALARM);
+//        if (alarm != 0 ){
+//            pf.putData("alarm", alarm);
+//        }
+//        int notify = AM.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+//        if (notify != 0 ){
+//            pf.putData("notify", notify);
+//        }
+        if (AM.getMode() == AudioManager.RINGER_MODE_NORMAL){
+            AM.setMode(AudioManager.RINGER_MODE_VIBRATE);
         }
-        int bell = AM.getStreamVolume(AudioManager.STREAM_RING);
-        if (bell != 0 ){
-            pf.putData("bell", bell);
-        }
-        int music = AM.getStreamVolume(AudioManager.STREAM_MUSIC);
-        if (music != 0 ){
-            pf.putData("music", music);
-        }
-        int alarm = AM.getStreamVolume(AudioManager.STREAM_ALARM);
-        if (alarm != 0 ){
-            pf.putData("alarm", alarm);
-        }
-        int notify = AM.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-        if (notify != 0 ){
-            pf.putData("notify", notify);
-        }
-        AM.setMode(AudioManager.RINGER_MODE_VIBRATE);
     }
 
     @Nullable

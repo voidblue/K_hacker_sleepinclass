@@ -54,7 +54,6 @@ public class Inform_class_Dialog extends Dialog {
                 //클래스 네임을 클래스 코드로 바꿀것
                 ST.addclass(classname, alltime, place, major, classcode ,password);
                 Toast.makeText(getContext(), "강의 코드는 " + classcode + "입니다.",Toast.LENGTH_LONG).show();
-                //TODO 데이터 전부 전달해야함, 강의코드도 계산해서 반환하기
                 dismiss();
             }
         });

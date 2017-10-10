@@ -66,7 +66,6 @@ public class SoundContoller {
     }
 
     public void excute(){
-        Log.d("볼륨조절서비스", "onCreate: 되고있니");
         BD.AM.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     }
 
