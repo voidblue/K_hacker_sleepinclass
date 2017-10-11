@@ -1,23 +1,38 @@
-package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
+package com.example.voidbluelabtop.sleepinclass.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
 
+import java.util.List;
+
 /**
- * Created by voidbluelabtop on 17. 9. 19.
+ * Created by voidbluelabtop on 17. 7. 29.
  */
 
+
+//데이터베이스에서 받아온 값을 기초로 해야함
 public class Student_attand_adapter extends BaseAdapter {
+    Singleton_TempModel ST;
+    List<List> classtable;
+    String Major, classroom, distance;
+    int mode;
+    //mode==0 학생관리, 1이면 출결내역
+    public Student_attand_adapter(){
+        ST = Singleton_TempModel.getInstance();
+        classtable = ST.getclass();
+//        this.mode = mode;
+    }
+
     @Override
     public int getCount() {
-        return 0;
+        return classtable.size();
     }
 
     @Override
@@ -29,7 +44,6 @@ public class Student_attand_adapter extends BaseAdapter {
     public long getItemId(int i) {
         return 0;
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         int pos = position;
@@ -45,10 +59,18 @@ public class Student_attand_adapter extends BaseAdapter {
 //        TextView beaconimage = (TextView) convertView.findViewById(R.id.) ;
 
 
-        TextView classname = (TextView) convertView.findViewById(R.id.TV_myclassname) ;
-        TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
-        TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
+        TextView classorder = (TextView) convertView.findViewById(R.id.tv_classorder) ;
+        TextView starttime = (TextView) convertView.findViewById(R.id.tv_starttime) ;
+        TextView attandtime = (TextView) convertView.findViewById(R.id.tv_attandtime) ;
+        TextView attand = (TextView) convertView.findViewById(R.id.tv_attand);
+        TextView late = (TextView) convertView.findViewById(R.id.tv_late);
+        TextView absent = (TextView) convertView.findViewById(R.id.tv_absent);
+
+        //TODO 이제 텍스트 처리하는거 넣어야되는데 귀찮다 ㅁㄴ엄ㄴ허내ㅑ눙맹뉴냐
 
         return convertView;
     }
+
+
+
 }

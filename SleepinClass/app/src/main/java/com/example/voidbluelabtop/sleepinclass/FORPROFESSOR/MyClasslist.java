@@ -1,16 +1,14 @@
 package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.example.voidbluelabtop.sleepinclass.CLASSLIST.Classlist_adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Classlist_adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 

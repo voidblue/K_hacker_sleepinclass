@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.voidbluelabtop.sleepinclass.R;
-import com.example.voidbluelabtop.sleepinclass.STUDENTLIST.Studentlist_adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_adapter;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 
 public class Attantant_Manager extends AppCompatActivity {

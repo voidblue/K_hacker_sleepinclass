@@ -77,7 +77,6 @@ public class Inform_class_Dialog extends Dialog {
 
     public void settime(String day, String start, String end){
         String time = day.charAt(0) + " " + start + " ~ " + end;
-
         if(timetable.getText().equals("")){
             timetable.setText(time);
             alltime = time;

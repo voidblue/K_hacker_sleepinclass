@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import com.example.voidbluelabtop.sleepinclass.R;
-import com.example.voidbluelabtop.sleepinclass.STUDENTLIST.Studentlist_adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_adapter;
 
 public class Manage_student extends AppCompatActivity {
 

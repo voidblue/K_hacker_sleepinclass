@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.STUDENTLIST;
+package com.example.voidbluelabtop.sleepinclass.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
