@@ -56,7 +56,7 @@ public class Classlist_adapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.item_classlist, parent, false);
         }
 
-        // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
+        // 화면에 표시될 View(Layouto이 inflate된)으로부터 위젯에 대한 참조 획득
 //        TextView beaconimage = (TextView) convertView.findViewById(R.id.) ;
 
 
