@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.BeaconList;
+package com.example.voidbluelabtop.sleepinclass.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.estimote.coresdk.recognition.packets.Beacon;
+import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_BeaconList;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.List;

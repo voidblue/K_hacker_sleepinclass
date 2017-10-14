@@ -69,7 +69,7 @@ public class Studentlist_Adapter extends BaseAdapter {
         TextView studentcode = (TextView) convertView.findViewById(R.id.TV_studentcode) ;
 
         // 아이템 내 각 위젯에 데이터 반영
-        //TODO 데아터베이스 이용해볼것
+        //TODO 데이터베이스 이용해볼것
         String classroom = "";
         studentname.setText((String)students.get(pos).get(0));
         studentmajor.setText((String)students.get(pos).get(1));

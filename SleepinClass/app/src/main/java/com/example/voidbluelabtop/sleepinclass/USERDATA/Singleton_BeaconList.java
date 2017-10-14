@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.BeaconList;
+package com.example.voidbluelabtop.sleepinclass.USERDATA;
 
 import com.estimote.coresdk.recognition.packets.Beacon;
 import com.estimote.coresdk.recognition.utils.MacAddress;

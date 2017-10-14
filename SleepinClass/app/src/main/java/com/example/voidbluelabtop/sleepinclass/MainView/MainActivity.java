@@ -20,12 +20,12 @@ import android.view.MenuItem;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
-import com.example.voidbluelabtop.sleepinclass.BeaconList.BeaconDetect;
+import com.example.voidbluelabtop.sleepinclass.Services.BeaconDetect;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.CreateClass;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.MyClasslist;
 import com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Enroll_class;
-import com.example.voidbluelabtop.sleepinclass.Time.Split_Date;
+import com.example.voidbluelabtop.sleepinclass.Utils.Split_Date;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 import com.example.voidbluelabtop.sleepinclass.R;
 

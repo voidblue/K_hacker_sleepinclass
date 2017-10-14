@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".BeaconList.BeaconDetect"
+            android:name=".Services.BeaconDetect"
             android:enabled="true"
             android:exported="true" />
 
@@ -62,6 +62,8 @@
         <activity android:name=".FORPROFESSOR.Student_attandant"
             android:label="출결 내역"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".FORPROFESSOR.Student_Weekly_Attandant"
+            android:label="주차별 출결내역"/>
     </application>
 
 </manifest>

@@ -22,6 +22,8 @@ public class Student_Attand_Adapter extends BaseAdapter {
     Singleton_TempModel ST;
     List<List> classtable;
     String Major, classroom, distance;
+    TextView attand, late, absent;
+    int defaultTextColor;
     int mode;
     //mode==0 학생관리, 1이면 출결내역
     public Student_Attand_Adapter(){
@@ -59,14 +61,51 @@ public class Student_Attand_Adapter extends BaseAdapter {
 //        TextView beaconimage = (TextView) convertView.findViewById(R.id.) ;
 
 
+        //TODO 아래꺼 세개만 DB에서 받아와 처리하자
         TextView classorder = (TextView) convertView.findViewById(R.id.tv_classorder) ;
         TextView starttime = (TextView) convertView.findViewById(R.id.tv_starttime) ;
         TextView attandtime = (TextView) convertView.findViewById(R.id.tv_attandtime) ;
-        TextView attand = (TextView) convertView.findViewById(R.id.tv_attand);
-        TextView late = (TextView) convertView.findViewById(R.id.tv_late);
-        TextView absent = (TextView) convertView.findViewById(R.id.tv_absent);
 
-        //TODO 이제 텍스트 처리하는거 넣어야되는데 귀찮다 ㅁㄴ엄ㄴ허내ㅑ눙맹뉴냐
+
+
+        attand = (TextView) convertView.findViewById(R.id.tv_attand);
+        late = (TextView) convertView.findViewById(R.id.tv_late);
+        absent = (TextView) convertView.findViewById(R.id.tv_absent);
+        if (attand.getCurrentTextColor() == late.getCurrentTextColor()){
+            defaultTextColor = attand.getCurrentTextColor();
+        }
+        else if (late.getCurrentTextColor() == absent.getCurrentTextColor()){
+            defaultTextColor = late.getCurrentTextColor();
+        }
+        else{
+            defaultTextColor = attand.getCurrentTextColor();
+        }
+        attand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attand.setTextColor(0xffff0000);
+                late.setTextColor(defaultTextColor);
+                absent.setTextColor(defaultTextColor);
+            }
+        });
+
+        late.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attand.setTextColor(defaultTextColor);
+                late.setTextColor(0xffff0000);
+                absent.setTextColor(defaultTextColor);
+            }
+        });
+
+        absent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attand.setTextColor(defaultTextColor);
+                late.setTextColor(defaultTextColor);
+                absent.setTextColor(0xffff0000);
+            }
+        });
 
         return convertView;
     }

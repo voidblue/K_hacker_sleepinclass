@@ -2,15 +2,12 @@ package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.voidbluelabtop.sleepinclass.Adapter.Student_Attand_Adapter;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
@@ -28,7 +25,7 @@ public class Student_attandant extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_attandant);
+        setContentView(R.layout.activity_student_attendant);
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_studentattandant);
         setSupportActionBar(toolbar);
         toolbar.setTitle("출결 내역");
@@ -65,10 +62,10 @@ public class Student_attandant extends AppCompatActivity {
         tv_monthlyattandant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), Student_monthly_attandant.class);
+                Intent i = new Intent(getApplicationContext(), Student_Weekly_Attandant.class);
                 i.putExtra("name", (String)student.get(0));
                 i.putExtra("major", (String)student.get(1));
-                i.putExtra("name", (String)student.get(2));
+                i.putExtra("code", (String)student.get(2));
                 startActivity(i);
             }
         });

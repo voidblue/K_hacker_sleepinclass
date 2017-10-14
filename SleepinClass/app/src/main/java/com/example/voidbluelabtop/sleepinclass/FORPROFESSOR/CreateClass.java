@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.example.voidbluelabtop.sleepinclass.BeaconList.Beaconlist_Adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Beaconlist_Adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 public class CreateClass extends AppCompatActivity {

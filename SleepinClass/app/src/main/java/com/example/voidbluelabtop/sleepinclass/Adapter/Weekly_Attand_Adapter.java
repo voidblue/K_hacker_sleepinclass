@@ -10,22 +10,13 @@ import android.widget.TextView;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
 
-import java.util.List;
-
 /**
  * Created by voidbluelabtop on 17. 9. 19.
  */
 
-public class Monthly_Attand_Adapter extends BaseAdapter {
-    Singleton_TempModel ST;
-    List<List> classtable;
-    String Major, classroom, distance;
-    int mode;
+public class Weekly_Attand_Adapter extends BaseAdapter {
     //mode==0 학생관리, 1이면 출결내역
-    public Monthly_Attand_Adapter(){
-        ST = Singleton_TempModel.getInstance();
-        classtable = ST.getclass();
-//        this.mode = mode;
+    public Weekly_Attand_Adapter(){
     }
 
     @Override
@@ -48,25 +39,22 @@ public class Monthly_Attand_Adapter extends BaseAdapter {
         int pos = position;
         final Context context = parent.getContext();
 
-        List classdata = classtable.get(position);
-
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_classlist, parent, false);
+            convertView = inflater.inflate(R.layout.item_weekly_attendant, parent, false);
         }
 
         // 화면에 표시될 View(Layouto이 inflate된)으로부터 위젯에 대한 참조 획득
-//        TextView beaconimage = (TextView) convertView.findViewById(R.id.) ;
 
+        TextView tv_week = (TextView)convertView.findViewById(R.id.tv_week);
+        TextView tv_mon = (TextView)convertView.findViewById(R.id.tv_mon_attendant);
+        TextView tv_tue = (TextView)convertView.findViewById(R.id.tv_tue_attendant);
+        TextView tv_wen = (TextView)convertView.findViewById(R.id.tv_wen_attendant);
+        TextView tv_thu = (TextView)convertView.findViewById(R.id.tv_thu_attendant);
+        TextView tv_fri = (TextView)convertView.findViewById(R.id.tv_fri_attendant);
 
-        TextView classname = (TextView) convertView.findViewById(R.id.TV_myclassname) ;
-        TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
-        TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
-
-        classname.setText((String)classdata.get(0));
-        classtime.setText((String)classdata.get(1));
-        classroom.setText((String)classdata.get(2));
+        tv_week.setText(pos + "주차");
 
         return convertView;
     }

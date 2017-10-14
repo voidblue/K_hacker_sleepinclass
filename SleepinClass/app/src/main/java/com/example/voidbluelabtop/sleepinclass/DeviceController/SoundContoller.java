@@ -1,4 +1,4 @@
-package com.example.voidbluelabtop.sleepinclass.Sound;
+package com.example.voidbluelabtop.sleepinclass.DeviceController;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,11 @@ import android.media.AudioManager;
 import android.util.Log;
 
 import com.estimote.coresdk.recognition.packets.Beacon;
-import com.example.voidbluelabtop.sleepinclass.BeaconList.BeaconDetect;
-import com.example.voidbluelabtop.sleepinclass.BeaconList.Singleton_BeaconList;
+import com.example.voidbluelabtop.sleepinclass.Services.BeaconDetect;
+import com.example.voidbluelabtop.sleepinclass.Services.SoundControlService;
+import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_BeaconList;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
-import com.example.voidbluelabtop.sleepinclass.Time.Split_Date;
-import com.example.voidbluelabtop.sleepinclass.USERDATA.Preference;
+import com.example.voidbluelabtop.sleepinclass.Utils.Split_Date;
 
 import java.util.Date;
 import java.util.List;
