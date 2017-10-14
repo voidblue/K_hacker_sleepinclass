@@ -18,13 +18,13 @@ import java.util.List;
 
 
 //데이터베이스에서 받아온 값을 기초로 해야함
-public class Student_attand_adapter extends BaseAdapter {
+public class Student_Attand_Adapter extends BaseAdapter {
     Singleton_TempModel ST;
     List<List> classtable;
     String Major, classroom, distance;
     int mode;
     //mode==0 학생관리, 1이면 출결내역
-    public Student_attand_adapter(){
+    public Student_Attand_Adapter(){
         ST = Singleton_TempModel.getInstance();
         classtable = ST.getclass();
 //        this.mode = mode;
@@ -52,7 +52,7 @@ public class Student_attand_adapter extends BaseAdapter {
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_classlist, parent, false);
+            convertView = inflater.inflate(R.layout.item_attand, parent, false);
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득

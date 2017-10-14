@@ -16,13 +16,13 @@ import java.util.List;
  * Created by voidbluelabtop on 17. 9. 19.
  */
 
-public class Classlist_adapter extends BaseAdapter {
+public class Monthly_Attand_Adapter extends BaseAdapter {
     Singleton_TempModel ST;
     List<List> classtable;
     String Major, classroom, distance;
     int mode;
     //mode==0 학생관리, 1이면 출결내역
-    public Classlist_adapter(){
+    public Monthly_Attand_Adapter(){
         ST = Singleton_TempModel.getInstance();
         classtable = ST.getclass();
 //        this.mode = mode;
@@ -30,7 +30,7 @@ public class Classlist_adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return classtable.size();
+        return 15;
     }
 
     @Override

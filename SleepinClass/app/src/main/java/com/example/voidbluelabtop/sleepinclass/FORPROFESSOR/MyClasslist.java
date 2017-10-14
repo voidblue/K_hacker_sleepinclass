@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.voidbluelabtop.sleepinclass.Adapter.Classlist_adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Classlist_Adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 
 public class MyClasslist extends AppCompatActivity {
     MyClasslist Instance;
     Context thiscontext;
-    Classlist_adapter CA;
+    Classlist_Adapter CA;
     Singleton_Tempdata ST;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MyClasslist extends AppCompatActivity {
         ST = Singleton_Tempdata.getInstance();
         thiscontext = this.getApplicationContext();
         Instance = this;
-        CA = new Classlist_adapter();
+        CA = new Classlist_Adapter();
 
 
         final ListView listview = (ListView) findViewById(R.id.myclasslist);

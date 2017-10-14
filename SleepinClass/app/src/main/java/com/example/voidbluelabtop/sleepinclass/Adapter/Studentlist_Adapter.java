@@ -20,13 +20,13 @@ import java.util.List;
 
 
 //데이터베이스에서 받아온 값을 기초로 해야함
-public class Studentlist_adapter extends BaseAdapter {
+public class Studentlist_Adapter extends BaseAdapter {
     Singleton_TempModel STM;
     List<List> students;
     int code;
     //code 0 : 수강생관리
     //code 1 : 출결관리(강사용)
-    public Studentlist_adapter(int code){
+    public Studentlist_Adapter(int code){
         this.code = code;
         STM = Singleton_TempModel.getInstance();
         students = STM.getStudenttable();

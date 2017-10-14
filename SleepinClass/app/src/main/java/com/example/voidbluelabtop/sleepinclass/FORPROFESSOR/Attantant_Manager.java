@@ -9,12 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.voidbluelabtop.sleepinclass.R;
-import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_Adapter;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 
 public class Attantant_Manager extends AppCompatActivity {
 
-    Studentlist_adapter  SA;
+    Studentlist_Adapter SA;
     Singleton_Tempdata ST;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class Attantant_Manager extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_managestudent);
         toolbar.setTitle("출결 관리(강사용)");
         toolbar.setTitleTextColor(0x99000000);
-        SA = new Studentlist_adapter(1);
+        SA = new Studentlist_Adapter(1);
         ST = Singleton_Tempdata.getInstance();
 
         ListView listview = (ListView) findViewById(R.id.studentlist);

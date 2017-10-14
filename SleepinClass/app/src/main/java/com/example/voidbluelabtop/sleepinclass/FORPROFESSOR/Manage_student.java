@@ -6,11 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import com.example.voidbluelabtop.sleepinclass.R;
-import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_adapter;
+import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_Adapter;
 
 public class Manage_student extends AppCompatActivity {
 
-    Studentlist_adapter SA;
+    Studentlist_Adapter SA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,7 @@ public class Manage_student extends AppCompatActivity {
         toolbar.setTitle("수강생 관리");
         toolbar.setTitleTextColor(0x99000000);
         setSupportActionBar(toolbar);
-        SA = new Studentlist_adapter(0);
+        SA = new Studentlist_Adapter(0);
 
         ListView listview = (ListView) findViewById(R.id.studentlist);
         listview.setAdapter(SA);
