@@ -24,7 +24,9 @@ if($result){
         ));
     }
 
-    echo "<pre>"; print_r($data); echo '</pre>';
+    header('Content-Type: application/json; charset=utf8');
+    $json = json_encode(array("webnautes"=>$data), JSON_PRETTY_PRINT+JSON_UNESCAPED_UNICODE);
+    echo $json;
 
 }  
 else{  
