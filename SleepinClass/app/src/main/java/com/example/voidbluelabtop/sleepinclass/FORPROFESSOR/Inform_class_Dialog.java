@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.voidbluelabtop.sleepinclass.DATABASE.InsertData;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
 
@@ -52,6 +53,8 @@ public class Inform_class_Dialog extends Dialog {
                 place = new String(ET_classroom.getText().toString());
                 String classcode = Integer.toString(Integer.parseInt(major) + classname.hashCode());
                 //클래스 네임을 클래스 코드로 바꿀것
+                InsertData ID = new InsertData("class");
+                ID.execute(classname, alltime, place, major, classcode);
                 ST.addclass(classname, alltime, place, major, classcode ,password);
                 Toast.makeText(getContext(), "강의 코드는 " + classcode + "입니다.",Toast.LENGTH_LONG).show();
                 dismiss();
