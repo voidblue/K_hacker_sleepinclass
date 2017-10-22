@@ -11,6 +11,7 @@ import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataContro
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
 //데이터베이스에서 받아온 값을 기초로 해야함
 public class Studentlist_Adapter extends BaseAdapter {
     Singleton_TempModel STM;
-    List<List> students;
+    List<HashMap> students;
     int mode;
     Singleton_UserDataController UDC;
     //code 0 : 수강생관리
@@ -29,8 +30,8 @@ public class Studentlist_Adapter extends BaseAdapter {
     public Studentlist_Adapter(int mode, String classCode){
         this.mode = mode;
         UDC = Singleton_UserDataController.getInstance();
-        UDC.processAttend(classCode);
-        students = UDC.getMyAttendant();
+        UDC.processmyClassStudent(classCode);
+        students = UDC.getMyClassStudents();
 
     }
 
@@ -44,7 +45,7 @@ public class Studentlist_Adapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return students.get(i);
     }
 
     @Override
@@ -73,9 +74,9 @@ public class Studentlist_Adapter extends BaseAdapter {
         // 아이템 내 각 위젯에 데이터 반영
         //TODO 데이터베이스 이용해볼것
         String classroom = "";
-        studentname.setText((String)students.get(pos).get(0));
-        studentmajor.setText((String)students.get(pos).get(1));
-        studentcode.setText((String)students.get(pos).get(2));
+        studentname.setText((String)students.get(pos).get("studentname"));
+        studentmajor.setText((String)students.get(pos).get("studentmajor"));
+        studentcode.setText((String)students.get(pos).get("studentcode"));
 
         //수강생 관리면 또는 출결관리면
 

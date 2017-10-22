@@ -286,7 +286,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
                 startTime.set(Calendar.YEAR, newYear);
                 Calendar endTime = (Calendar) startTime.clone();
                 endTime.set(Calendar.DAY_OF_WEEK, SD.getdaycode());
-                endTime.set(Calendar.HOUR, SD.getEndhour()+15);
+                endTime.set(Calendar.HOUR, SD.getEndhour()+3);
                 Log.d(TAG, "onMonthChange: " + Calendar.HOUR + "" + SD.getEndhour());
                 endTime.set(Calendar.MINUTE, SD.getEndminute());
                 endTime.set(Calendar.MONTH, newMonth - 1);

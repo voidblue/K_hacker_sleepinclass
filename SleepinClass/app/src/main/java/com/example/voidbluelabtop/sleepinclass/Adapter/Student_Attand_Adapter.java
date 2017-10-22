@@ -8,8 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 import com.example.voidbluelabtop.sleepinclass.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,22 +21,29 @@ import java.util.List;
 
 //데이터베이스에서 받아온 값을 기초로 해야함
 public class Student_Attand_Adapter extends BaseAdapter {
-    Singleton_TempModel ST;
-    List<List> classtable;
+    Singleton_UserDataController UDC;
+    List<HashMap> items;
     String Major, classroom, distance;
     TextView attand, late, absent;
     int defaultTextColor;
     int mode;
     //mode==0 학생관리, 1이면 출결내역
-    public Student_Attand_Adapter(){
-        ST = Singleton_TempModel.getInstance();
-        classtable = ST.getclass();
-//        this.mode = mode;
+    public Student_Attand_Adapter(String classcode, String strdate){
+        UDC = Singleton_UserDataController.getInstance();
+        UDC.processAttend(classcode);
+        List<HashMap> classtable = UDC.getMyAttendant();
+
+        for (int i = 0 ; i < classtable.size() ; i++){
+            String date = (String)classtable.get(i).get("date");
+            if(date.split("hour")[0].equals(strdate)){
+                items.add(classtable.get(i));
+            }
+        }
     }
 
     @Override
     public int getCount() {
-        return classtable.size();
+        return items.size();
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import java.util.List;
 import static android.R.layout.simple_spinner_dropdown_item;
 
 public class Settimedialog extends Dialog{
-
     private String day;
     private Dialog Owner;
     TimePicker starttime, endtime;

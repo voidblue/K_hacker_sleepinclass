@@ -68,9 +68,9 @@ public class Classlist_Adapter extends BaseAdapter {
         TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
         TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
 
-        classname.setText((String)classdata.get("classname"+position));
-        classtime.setText((String)classdata.get("time"+position));
-        classroom.setText((String)classdata.get("classroom"+position));
+        classname.setText((String)classdata.get("classname"));
+        classtime.setText((String)classdata.get("time"));
+        classroom.setText((String)classdata.get("classroom"));
 
         return convertView;
     }

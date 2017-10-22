@@ -67,12 +67,30 @@ public class BeaconDetect extends Service {
                             Beacon B = list.get(i);
                             if (currentClass.get("classcode" + i).equals(Integer.toString(B.getMajor()))) {
                                 InsertData ID = new InsertData("attendent");
-                                String now = date.getDay() + Integer.toString(date.getHours());
+                                String day;
+                                if (date.getDay() == 0){
+                                    if(date.getDay() == 0 ){
+                                        day = "일";
+                                    }else if(date.getDay() == 1){
+                                        day = "월";
+                                    }else if(date.getDay() == 2){
+                                        day = "화";
+                                    }else if(date.getDay() == 3){
+                                        day = "수";
+                                    }else if(date.getDay() == 4){
+                                        day = "목";
+                                    }else if(date.getDay() == 5){
+                                        day = "금";
+                                    }else{
+                                        day = "토";
+                                    }
+                                }
+                                String now = date.getYear()+ "년 " + date.getMonth()+ "월 " + date.getDate() + "일 " + date.getDay()+ "요일" + "hour" + date.getHours();
                                 if (date.getMinutes() < 10) {
-                                    ID.execute((String) currentClass.get("classcode" + i), now, GlobalVariables.userCode, "attend");
+                                    ID.execute((String) currentClass.get("classcode" + i), now, GlobalVariables.userCode, "2");
                                     hourchanged = false;
                                 } else {
-                                    ID.execute((String) currentClass.get("classcode" + i), now, GlobalVariables.userCode, "");
+                                    ID.execute((String) currentClass.get("classcode" + i), now, GlobalVariables.userCode, "1");
                                     hourchanged = false;
                                 }
                             }

@@ -19,10 +19,13 @@ import java.util.Date;
 import java.util.List;
 
 public class Student_attandant extends AppCompatActivity {
-    Singleton_UserDataController UDC;
-    Activity thisinstance;
-    TextView tv_date;
-    List student;
+
+    private Singleton_UserDataController UDC;
+    private Activity thisinstance;
+    private TextView tv_date;
+    private List student;
+    private Bundle bundle;
+    ListView lv_attend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,49 +35,65 @@ public class Student_attandant extends AppCompatActivity {
         toolbar.setTitle("출결 내역");
         toolbar.setTitleTextColor(0x99000000);
 
+        bundle = getIntent().getExtras();
         UDC = Singleton_UserDataController.getInstance();
 
-        Bundle bundle = getIntent().getExtras();
         String classocde = bundle.getString("classcode");
-        UDC.processAttend("classcode");
         thisinstance = this;
 
 
         
         tv_date = (TextView)findViewById(R.id.attand_date);
         Date date = new Date();
-        tv_date.setText(date.getYear()+ "년 " + date.getMonth() + "월 " + date.getDate() +"일 " +date.getDay());
+        String day;
+        if(date.getDay() == 0 ){
+            day = "일";
+        }else if(date.getDay() == 1){
+            day = "월";
+        }else if(date.getDay() == 2){
+            day = "화";
+        }else if(date.getDay() == 3){
+            day = "수";
+        }else if(date.getDay() == 4){
+            day = "목";
+        }else if(date.getDay() == 5){
+            day = "금";
+        }else{
+            day = "토";
+        }
+        String strDate = date.getYear()+1900+ "년 " + date.getMonth() + "월 " + date.getDate() +"일 " + day +"요일";
+        tv_date.setText(strDate);
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Dialog_datepicker DD = new Dialog_datepicker(thisinstance, tv_date);
                 DD.show();
+                lv_attend.setAdapter(new Student_Attand_Adapter(bundle.getString("studentcode"), tv_date.getText().toString()));
             }
         });
 
 
-        student = (List)STM.getStudenttable().get(STD.getStudentlistpos());
         TextView tv_studentname = (TextView)findViewById(R.id.tv_studentname);
         TextView tv_studentmajor = (TextView)findViewById(R.id.tv_studentmajor);
         TextView tv_studentcode = (TextView)findViewById(R.id.tv_studentcode);
 
-        tv_studentname.setText((String)student.get(0));
-        tv_studentmajor.setText((String)student.get(1));
-        tv_studentcode.setText((String)student.get(2));
+        tv_studentname.setText(bundle.getString("studentname"));
+        tv_studentmajor.setText(bundle.getString("studentmajor"));
+        tv_studentcode.setText(bundle.getString("studentcode"));
 
         TextView tv_monthlyattandant = (TextView) findViewById(R.id.showMonthlyAttandant);
         tv_monthlyattandant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), Student_Weekly_Attandant.class);
-                i.putExtra("name", (String)student.get(0));
-                i.putExtra("major", (String)student.get(1));
-                i.putExtra("code", (String)student.get(2));
+                i.putExtra("studentname", bundle.getString("studentname"));
+                i.putExtra("studentmajor", bundle.getString("studentmajor"));
+                i.putExtra("studentcode", bundle.getString("studentcode"));
                 startActivity(i);
             }
         });
 
-        ListView lv_attand = (ListView) findViewById(R.id.lv_attand);
-        lv_attand.setAdapter(new Student_Attand_Adapter());
+        lv_attend = (ListView) findViewById(R.id.lv_attand);
+        lv_attend.setAdapter(new Student_Attand_Adapter(bundle.getString("studentcode"), strDate));
     }
 }

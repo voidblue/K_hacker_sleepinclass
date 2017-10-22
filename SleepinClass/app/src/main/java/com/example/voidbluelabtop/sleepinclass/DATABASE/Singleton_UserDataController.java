@@ -1,6 +1,9 @@
 package com.example.voidbluelabtop.sleepinclass.DATABASE;
 
+import android.app.Application;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +23,7 @@ public class Singleton_UserDataController {
     ArrayList<HashMap<String, String>> myClasses;
     ArrayList<HashMap<String, String>> myAttendant;
     ArrayList<HashMap<String, String>> professorClasses;
-    ArrayList<HashMap<String, String>> myClassStudents;
+    ArrayList myClassStudents;
 
 
 
@@ -125,43 +128,48 @@ public class Singleton_UserDataController {
         }
     }
 
-    public List processmyClassStudent(String classCode){
+    public void processmyClassStudent(String classCode){
         GD = new GetData();
-        ArrayList<String> classCodes = new ArrayList();
+        ArrayList studentCodes = new ArrayList();
         GD.setMode("signedclass");
         GD.execute();
         while(GD.mJsonString == null){
-            Log.d("", "getMyClasses: " + GD.getStatus());
+//            Log.d("", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedClassCode = GD.getHashedJson();
         GD.cancel(true);
-        Log.d("", "getMyClasses: "+hashedClassCode.size());
-        for (int i = 0; i < hashedClassCode.size() / 2; i++) {
-            String recievedClassCode = hashedClassCode.get("classcode" + i);
 
+
+
+        for (int i = 0; i < hashedClassCode.size() / 2; i++) {
+            String recievedClassCode = hashedClassCode.get("classcode"+i);
             if (recievedClassCode.equals(classCode)) {
-                classCodes.add(hashedClassCode.get("studentcode" + i));
+                studentCodes.add(hashedClassCode.get("studentcode"+i));
             }
         }
         GD = new GetData();
         GD.setMode("student");
+        GD.execute();
         myClassStudents = new ArrayList();
         while(GD.mJsonString == null) {
-            Log.d("", "getMyClasses: " + GD.getStatus());
+            Log.d("xxx", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedmyClassStudnet = GD.getHashedJson();
-        int j = 0 ;
-        for (int i = 0 ; i < hashedmyClassStudnet.size() ; i++){
-            if (hashedmyClassStudnet.get("classcode"+i).equals(classCode)){
-                HashMap<String, String> student = new HashMap<>();
-                student.put("studentname", hashedmyClassStudnet.get("studentname"+i));
-                student.put("studentmajor", hashedmyClassStudnet.get("studentmajor"+i));
-                student.put("studentcode", hashedmyClassStudnet.get("studentcode"+i));
+        Log.d("", "processmyClassStudent: " + hashedmyClassStudnet.get("studentcode"+0));
+        Log.d("", "processmyClassStudent: " + studentCodes.get(0));
+        for (int i = 0 ; i < hashedmyClassStudnet.size()/4 ; i++){
+            for(int j  = 0 ; j < studentCodes.size() ; j++){
+                if (hashedmyClassStudnet.get("studentcode"+i).equals(studentCodes.get(j))) {
+                    HashMap<String, String> student = new HashMap<>();
+                    student.put("studentname", hashedmyClassStudnet.get("studentname" + i));
+                    student.put("studentmajor", hashedmyClassStudnet.get("studentmajor" + i));
+                    student.put("studentcode", hashedmyClassStudnet.get("studentcode" + i));
+                    myClassStudents.add(student);
+                }
             }
         }
-        return new ArrayList();
     }
 
     public List getMyClasses(){
@@ -174,5 +182,9 @@ public class Singleton_UserDataController {
 
     public List getProfessorclasses(){
         return professorClasses;
+    }
+
+    public List getMyClassStudents(){
+        return myClassStudents;
     }
 }
