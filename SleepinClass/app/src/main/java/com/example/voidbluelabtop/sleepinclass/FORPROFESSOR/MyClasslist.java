@@ -1,6 +1,7 @@
 package com.example.voidbluelabtop.sleepinclass.FORPROFESSOR;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,8 @@ import android.widget.ListView;
 import com.example.voidbluelabtop.sleepinclass.Adapter.Classlist_Adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
+
+import java.util.HashMap;
 
 public class MyClasslist extends AppCompatActivity {
     MyClasslist Instance;
@@ -36,9 +39,9 @@ public class MyClasslist extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ST.setClasslistpos(i);
-                InputpasswordDialog dialog = new InputpasswordDialog(Instance, Instance);
-                dialog.show();
+                Intent intent = new Intent(thiscontext, Student_attandant.class);
+                intent.putExtra("classCode", (String)((HashMap)(CA.getItem(i))).get("classcode"));
+                startActivity(intent);
             }
         });
 

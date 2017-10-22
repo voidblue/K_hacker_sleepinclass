@@ -20,12 +20,13 @@ import android.view.MenuItem;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
-import com.example.voidbluelabtop.sleepinclass.DATABASE.UserDataController;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 import com.example.voidbluelabtop.sleepinclass.Services.BeaconDetect;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.CreateClass;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.MyClasslist;
 import com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Enroll_class;
+import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 import com.example.voidbluelabtop.sleepinclass.Utils.Split_Date;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 import com.example.voidbluelabtop.sleepinclass.R;
@@ -40,7 +41,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     private Singleton_Tempdata tempdata;
     public static Toolbar toolbar;
     private Bundle state;
-    private UserDataController UDC;
+    private Singleton_UserDataController UDC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -251,9 +252,18 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-        UDC = UserDataController.getInstance();
-        UDC.processClass("2013108213");
-        List myClasses = UDC.getMyClasses();
+        UDC = Singleton_UserDataController.getInstance();
+        List myClasses = new ArrayList();
+        if (GlobalVariables.userauth == 0){
+            UDC.processClass(GlobalVariables.userCode);
+            myClasses = UDC.getMyClasses();
+        }
+        else if (GlobalVariables.userauth == 1){
+            UDC.processProfessorClass(GlobalVariables.userCode);
+            myClasses = UDC.getProfessorclasses();
+        }
+
+
         Split_Date SD = new Split_Date();
 //        Singleton_TempModel ST = Singleton_TempModel.getInstance();
         WeekViewEvent event;
@@ -261,7 +271,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
         for(int i = 0 ; i < myClasses.size() ; i++){
 
             HashMap obj = (HashMap)myClasses.get(i);
-            String date = (String)obj.get("time"+i);
+            String date = (String)obj.get("time");
             String TAG = "time";
             SD.setdate(date);
             for (int j = 0; j < SD.getlength(); j++) {
@@ -281,7 +291,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
                 endTime.set(Calendar.MINUTE, SD.getEndminute());
                 endTime.set(Calendar.MONTH, newMonth - 1);
                 event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
-                event.setName((String)obj.get("classname"+i) +"\n" + (String)obj.get("classroom"+i));
+                event.setName((String)obj.get("classname") +"\n" + (String)obj.get("classroom"));
                 event.setColor(getResources().getColor(R.color.event_color_01));
                 events.add(event);
             }

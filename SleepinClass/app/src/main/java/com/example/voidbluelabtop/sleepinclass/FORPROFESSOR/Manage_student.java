@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.Adapter.Studentlist_Adapter;
+import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 
 public class Manage_student extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class Manage_student extends AppCompatActivity {
         toolbar.setTitle("수강생 관리");
         toolbar.setTitleTextColor(0x99000000);
         setSupportActionBar(toolbar);
-        SA = new Studentlist_Adapter(0);
+        SA = new Studentlist_Adapter(0, GlobalVariables.userCode);
 
         ListView listview = (ListView) findViewById(R.id.studentlist);
         listview.setAdapter(SA);

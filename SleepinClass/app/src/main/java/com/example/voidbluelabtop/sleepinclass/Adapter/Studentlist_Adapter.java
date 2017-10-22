@@ -5,10 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.estimote.coresdk.recognition.packets.Beacon;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.R;
 
@@ -23,13 +22,16 @@ import java.util.List;
 public class Studentlist_Adapter extends BaseAdapter {
     Singleton_TempModel STM;
     List<List> students;
-    int code;
+    int mode;
+    Singleton_UserDataController UDC;
     //code 0 : 수강생관리
     //code 1 : 출결관리(강사용)
-    public Studentlist_Adapter(int code){
-        this.code = code;
-        STM = Singleton_TempModel.getInstance();
-        students = STM.getStudenttable();
+    public Studentlist_Adapter(int mode, String classCode){
+        this.mode = mode;
+        UDC = Singleton_UserDataController.getInstance();
+        UDC.processAttend(classCode);
+        students = UDC.getMyAttendant();
+
     }
 
     public void refresh(){

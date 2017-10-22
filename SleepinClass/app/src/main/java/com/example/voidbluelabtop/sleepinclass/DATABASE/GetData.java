@@ -130,24 +130,28 @@ public class GetData extends AsyncTask<String, Void, String> {
                     String classroom = item.getString("classroom");
                     String beaconmajor = item.getString("beaconmajor");
                     String classcode = item.getString("classcode");
+                    String professorcode = item.getString("professorcode");
 
                     hashMap.put("classname" + i, classname);
                     hashMap.put("time" + i, time);
                     hashMap.put("classroom" + i, classroom);
                     hashMap.put("beaconmajor" + i , beaconmajor);
                     hashMap.put("classcode" + i , classcode);
+                    hashMap.put("professorcode" + i, professorcode);
                 }
             } else if (mode == 3){
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject item = jsonArray.getJSONObject(i);
 
-                    String classcode = item.getString("classcode");
+                    String studentname = item.getString("studentname");
+                    String studentmajor = item.getString("studentmajor");
                     String studentcode = item.getString("studentcode");
 
 
-                    hashMap.put("classcode" + i, classcode);
+                    hashMap.put("studentname" + i, studentname);
                     hashMap.put("studentcode" + i, studentcode);
+                    hashMap.put("studentmajor" + i, studentmajor);
                 }
             } else if (mode == 4){
                 for (int i = 0; i < jsonArray.length(); i++) {

@@ -8,8 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 import com.example.voidbluelabtop.sleepinclass.R;
+import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,15 +20,16 @@ import java.util.List;
  */
 
 public class Classlist_Adapter extends BaseAdapter {
-    Singleton_TempModel ST;
-    List<List> classtable;
+    List<HashMap<String, String>> classtable;
     String Major, classroom, distance;
+    Singleton_UserDataController UDC;
     int mode;
     //mode==0 학생관리, 1이면 출결내역
     public Classlist_Adapter(){
-        ST = Singleton_TempModel.getInstance();
-        classtable = ST.getclass();
-//        this.mode = mode;
+        UDC = Singleton_UserDataController.getInstance();
+        UDC.processProfessorClass(GlobalVariables.userCode);
+        classtable = UDC.getProfessorclasses();
+
     }
 
     @Override
@@ -35,7 +39,7 @@ public class Classlist_Adapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return classtable.get(i);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Classlist_Adapter extends BaseAdapter {
         int pos = position;
         final Context context = parent.getContext();
 
-        List classdata = classtable.get(position);
+        HashMap classdata = classtable.get(position);
 
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
@@ -64,9 +68,9 @@ public class Classlist_Adapter extends BaseAdapter {
         TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
         TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
 
-        classname.setText((String)classdata.get(0));
-        classtime.setText((String)classdata.get(1));
-        classroom.setText((String)classdata.get(2));
+        classname.setText((String)classdata.get("classname"+position));
+        classtime.setText((String)classdata.get("time"+position));
+        classroom.setText((String)classdata.get("classroom"+position));
 
         return convertView;
     }

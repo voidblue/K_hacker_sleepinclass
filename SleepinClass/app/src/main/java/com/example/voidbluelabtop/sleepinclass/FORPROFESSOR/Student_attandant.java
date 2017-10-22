@@ -11,14 +11,15 @@ import android.widget.TextView;
 
 import com.example.voidbluelabtop.sleepinclass.Adapter.Student_Attand_Adapter;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 
+import java.util.Date;
 import java.util.List;
 
 public class Student_attandant extends AppCompatActivity {
-    Singleton_TempModel STM;
-    Singleton_Tempdata STD;
+    Singleton_UserDataController UDC;
     Activity thisinstance;
     TextView tv_date;
     List student;
@@ -31,15 +32,18 @@ public class Student_attandant extends AppCompatActivity {
         toolbar.setTitle("출결 내역");
         toolbar.setTitleTextColor(0x99000000);
 
+        UDC = Singleton_UserDataController.getInstance();
 
-        STM = Singleton_TempModel.getInstance();
-        STD = Singleton_Tempdata.getInstance();
+        Bundle bundle = getIntent().getExtras();
+        String classocde = bundle.getString("classcode");
+        UDC.processAttend("classcode");
         thisinstance = this;
 
 
         
         tv_date = (TextView)findViewById(R.id.attand_date);
-
+        Date date = new Date();
+        tv_date.setText(date.getYear()+ "년 " + date.getMonth() + "월 " + date.getDate() +"일 " +date.getDay());
         tv_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -23,7 +23,7 @@ public class Attantant_Manager extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_managestudent);
         toolbar.setTitle("출결 관리(강사용)");
         toolbar.setTitleTextColor(0x99000000);
-        SA = new Studentlist_Adapter(1);
+        SA = new Studentlist_Adapter(1, new String());
         ST = Singleton_Tempdata.getInstance();
 
         ListView listview = (ListView) findViewById(R.id.studentlist);

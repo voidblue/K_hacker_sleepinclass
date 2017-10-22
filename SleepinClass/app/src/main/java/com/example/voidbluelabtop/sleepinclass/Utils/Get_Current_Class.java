@@ -1,9 +1,7 @@
 package com.example.voidbluelabtop.sleepinclass.Utils;
 
-import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
-import com.example.voidbluelabtop.sleepinclass.DATABASE.UserDataController;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,12 +13,12 @@ import java.util.List;
 public class Get_Current_Class {
     Date date;
     Split_Date SD;
-    UserDataController UDC;
+    Singleton_UserDataController UDC;
     HashMap current_Class;
     public Get_Current_Class(){
         date = new Date();
         SD = new Split_Date();
-        UDC = UserDataController.getInstance();
+        UDC = Singleton_UserDataController.getInstance();
     }
 
     public HashMap getCurrent_Class(){
@@ -49,7 +47,7 @@ public class Get_Current_Class {
         List classlist = UDC.getMyClasses();
         for (int i = 0 ; i < classlist.size() ; i++){
             HashMap inst = (HashMap) classlist.get(i);
-            String time = (String) inst.get("time"+i);
+            String time = (String) inst.get("time");
             SD.setdate(time);
             for (int j = 0 ; j < SD.getlength() ; j++ ){
                 SD.setdateline(j);
