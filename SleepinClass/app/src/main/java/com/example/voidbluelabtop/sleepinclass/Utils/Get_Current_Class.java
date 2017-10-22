@@ -1,9 +1,11 @@
 package com.example.voidbluelabtop.sleepinclass.Utils;
 
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.UserDataController;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -11,19 +13,19 @@ import java.util.List;
  */
 
 public class Get_Current_Class {
-    Singleton_TempModel ST;
     Date date;
     Split_Date SD;
+    UserDataController UDC;
+    HashMap current_Class;
     public Get_Current_Class(){
-
         date = new Date();
         SD = new Split_Date();
-        ST = Singleton_TempModel.getInstance();
+        UDC = UserDataController.getInstance();
     }
 
-    public String getCurrent_Class(){
+    public HashMap getCurrent_Class(){
         int currentDayCode;
-        List currentClass = new ArrayList();
+
         String current_ClassCode = "None";
         String[] spliteddate = date.toString().split(" ");
         String[] currenttime = spliteddate[4].split(":");
@@ -44,10 +46,10 @@ public class Get_Current_Class {
         }
 
 
-        List classlist = ST.getclass();
+        List classlist = UDC.getMyClasses();
         for (int i = 0 ; i < classlist.size() ; i++){
-            List list = (List)classlist.get(i);
-            String time = (String) list.get(2);
+            HashMap inst = (HashMap) classlist.get(i);
+            String time = (String) inst.get("time"+i);
             SD.setdate(time);
             for (int j = 0 ; j < SD.getlength() ; j++ ){
                 SD.setdateline(j);
@@ -56,12 +58,12 @@ public class Get_Current_Class {
                     int end = SD.getEndminute() * 60 + SD.getEndminute();
                     int now = Integer.parseInt(currenttime[0])*60 + Integer.parseInt(currenttime[1]);
                     if(now < end && now > start){
-                        current_ClassCode = (String)list.get(4);
+                        current_Class = inst;
                     }
                 }
             }
         }
-        return current_ClassCode;
+        return current_Class;
     }
     public static void main(String args[]){
         Get_Current_Class GCC = new Get_Current_Class();

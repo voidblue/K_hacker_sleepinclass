@@ -110,7 +110,7 @@ public class WeekView extends View {
     private int mEffectiveMinHourHeight = mMinHourHeight; //compensates for the fact that you can't keep zooming out.
     private int mMaxHourHeight = 250;
     private int mColumnGap = 10;
-    private int mFirstDayOfWeek = Calendar.MONDAY;
+    private int mFirstDayOfWeek = Calendar.SUNDAY;
     private int mTextSize = 12;
     private int mHeaderColumnPadding = 10;
     private int mHeaderColumnTextColor = Color.BLACK;

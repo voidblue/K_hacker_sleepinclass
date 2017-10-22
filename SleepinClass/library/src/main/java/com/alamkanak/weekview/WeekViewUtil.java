@@ -38,6 +38,9 @@ public class WeekViewUtil {
         Calendar nearestmonday = Calendar.getInstance();
         int i = 0;
         Date date = nearestmonday.getTime();
+        if (date.getDay() == 0 || date.getDay() == 6){
+            date.setDate(date.getDate()+1);
+        }
         while(true) {
             if (date.getDay() == 1) {
                 break;

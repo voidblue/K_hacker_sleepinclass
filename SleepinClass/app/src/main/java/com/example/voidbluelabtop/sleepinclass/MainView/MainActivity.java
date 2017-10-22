@@ -251,32 +251,37 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-        UDC = new UserDataController();
+        UDC = UserDataController.getInstance();
+        UDC.processClass("2013108213");
+        List myClasses = UDC.getMyClasses();
         Split_Date SD = new Split_Date();
 //        Singleton_TempModel ST = Singleton_TempModel.getInstance();
         WeekViewEvent event;
-        List classes = UDC.getMyClasses("2013108213");
-        for(int i = 0 ; i < classes.size() ; i++){
-            
-            String date = (String) ((HashMap)classes.get(i)).get("time");
+        Log.d("", "onMonthChange: " + myClasses.size());
+        for(int i = 0 ; i < myClasses.size() ; i++){
+
+            HashMap obj = (HashMap)myClasses.get(i);
+            String date = (String)obj.get("time"+i);
+            String TAG = "time";
             SD.setdate(date);
             for (int j = 0; j < SD.getlength(); j++) {
                 SD.setdateline(j);
                 Calendar startTime = Calendar.getInstance();
                 startTime.setTime(WeekViewUtil.nearestmonday().getTime());
                 startTime.set(Calendar.HOUR_OF_DAY, SD.getStarthour() + 15);
+                Log.d(TAG, "onMonthChange: " + Calendar.HOUR_OF_DAY + "" + SD.getStarthour());
                 startTime.set(Calendar.DAY_OF_WEEK, SD.getdaycode());
-//                Log.d("","ahfmrpTek" + classes.size() + SD.getStarthour());
                 startTime.set(Calendar.MINUTE, SD.getStartminute());
                 startTime.set(Calendar.MONTH, newMonth - 1);
                 startTime.set(Calendar.YEAR, newYear);
                 Calendar endTime = (Calendar) startTime.clone();
                 endTime.set(Calendar.DAY_OF_WEEK, SD.getdaycode());
-                endTime.set(Calendar.HOUR, SD.getEndhour()+3);
+                endTime.set(Calendar.HOUR, SD.getEndhour()+15);
+                Log.d(TAG, "onMonthChange: " + Calendar.HOUR + "" + SD.getEndhour());
                 endTime.set(Calendar.MINUTE, SD.getEndminute());
                 endTime.set(Calendar.MONTH, newMonth - 1);
                 event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
-                event.setName((String)((HashMap)classes.get(i)).get("name") +"\n" + (String)((HashMap)classes.get(i)).get("classroom"));
+                event.setName((String)obj.get("classname"+i) +"\n" + (String)obj.get("classroom"+i));
                 event.setColor(getResources().getColor(R.color.event_color_01));
                 events.add(event);
             }

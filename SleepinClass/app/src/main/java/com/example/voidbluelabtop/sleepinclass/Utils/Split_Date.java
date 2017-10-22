@@ -17,7 +17,13 @@ public class Split_Date {
 //        this.date = date;
 //    }
     public void setdate(String date){
-        dates = date.split("\n");
+        if (date.contains("\n")) {
+            dates = date.split("\n");
+        }
+        else{
+            dates = new String[1];
+            dates[0] = date;
+        }
         this.date = dates[0];
 
     }
@@ -51,7 +57,6 @@ public class Split_Date {
             daycode = 5;
         }
         time = date.split(day + " ")[1];
-        Log.d("", "process: " + time);
         starttime = time.split(" ~ ")[0];
         endtime = time.split(" ~ ")[1];
         starthour = Integer.parseInt(starttime.split(" : ")[0]);
