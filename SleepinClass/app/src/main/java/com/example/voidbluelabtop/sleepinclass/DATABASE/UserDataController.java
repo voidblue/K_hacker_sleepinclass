@@ -1,5 +1,6 @@
 package com.example.voidbluelabtop.sleepinclass.DATABASE;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
@@ -27,8 +28,12 @@ public class UserDataController {
         ArrayList<String> classCodes = new ArrayList();
         GD.setMode("signedclass");
         GD.execute();
+        Log.d("", "getMyClasses: " + GD.getStatus());
+        while(GD.mJsonString == null){
+            Log.d("", "getMyClasses: " + GD.getStatus());
+        }
+        GD.process();
         HashMap<String, String> hashedClassCode = GD.getHashedJson();
-        hashedClassCode.get("classcode");
         Log.d("", "getMyClasses: "+hashedClassCode.isEmpty());
         for (int i = 0; i < hashedClassCode.size() / 2; i++) {
             String recievedStudentCode = hashedClassCode.get("studentcode" + i);
@@ -38,8 +43,13 @@ public class UserDataController {
 
         }
         //TODO php파일 만들어야함
+        GD = new GetData();
         GD.setMode("class");
-        GD.execute(GlobalVariables.URL + "getclass");
+        GD.execute();
+//        while(GD.mJsonString == null) {
+//            Log.d("", "getMyClasses: " + GD.getStatus());
+//        }
+        GD.process();
         HashMap<String, String> hashedClasses = GD.getHashedJson();
         for (int i = 0; i < hashedClasses.size() / 5; i++) {
             for (int j = 0; j < classCodes.size(); j++) {

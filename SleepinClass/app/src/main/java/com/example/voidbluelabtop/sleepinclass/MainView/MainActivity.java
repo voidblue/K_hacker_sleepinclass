@@ -40,6 +40,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     private Singleton_Tempdata tempdata;
     public static Toolbar toolbar;
     private Bundle state;
+    private UserDataController UDC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -250,7 +251,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-        UserDataController UDC = new UserDataController();
+        UDC = new UserDataController();
         Split_Date SD = new Split_Date();
 //        Singleton_TempModel ST = Singleton_TempModel.getInstance();
         WeekViewEvent event;

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListAdapter;
 
+import com.estimote.coresdk.repackaged.gson_v2_3_1.com.google.gson.JsonParser;
 import com.example.voidbluelabtop.sleepinclass.Utils.Get_Current_Class;
 import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 
@@ -25,24 +26,14 @@ import java.util.HashMap;
  */
 
 public class GetData extends AsyncTask<String, Void, String> {
-    ProgressDialog progressDialog;
     String errorString = null;
-    String mJsonString;
+    public String mJsonString;
     HashMap<String,String> hashedJson;
     int mode;
     String serverURL;
     String jasonTag;
-    @Override
-    protected void onPreExecute() {
-
-    }
-
-
-    @Override
-    protected void onPostExecute(String result) {
-        process();
-    }
     public void setMode(String mode){
+        mJsonString = null;
         if (mode.equals("signedclass")){
             this.mode = 1;
             serverURL = GlobalVariables.URL + "getsignedclass.php";
@@ -65,8 +56,6 @@ public class GetData extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-
-
         try {
             URL url = new URL(serverURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -100,8 +89,8 @@ public class GetData extends AsyncTask<String, Void, String> {
 
 
             bufferedReader.close();
-
-
+            mJsonString = sb.toString().trim();
+            this.cancel(true);
             return sb.toString().trim();
 
 
@@ -115,9 +104,10 @@ public class GetData extends AsyncTask<String, Void, String> {
     }
 
 
-    private HashMap<String, String> process(){
+    public HashMap<String, String> process(){
+        Log.d("", "process: " + mJsonString);
         try {
-            JSONObject jsonObject = new JSONObject();
+            JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(jasonTag);
             HashMap<String, String> hashMap = new HashMap<>();
             if (mode == 1) {
@@ -127,8 +117,6 @@ public class GetData extends AsyncTask<String, Void, String> {
 
                     String classcode = item.getString("classcode");
                     String studentcode = item.getString("studentcode");
-
-
 
                     hashMap.put("classcode" + i, classcode);
                     hashMap.put("studentcode" + i, studentcode);
