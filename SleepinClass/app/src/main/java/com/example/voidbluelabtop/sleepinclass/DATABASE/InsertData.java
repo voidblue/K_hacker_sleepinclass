@@ -56,17 +56,18 @@ public class InsertData extends AsyncTask<String, Void, String>{
             String beaconmajor = strings[3];
             String classcode = strings[4];
             postParameters = "classname=" + name + "&time=" + time + "&classroom=" + room +
-                            "&beaconmajor=" + beaconmajor + "&classcode=" +  classcode;
-            extramode = "insertClass.php";
+                            "&beaconMajor=" + beaconmajor + "&classcode=" +  classcode;
+            extramode = "insertclass.php";
+
         }
-        else if(this.mode == 2){
+        else if(this.mode == 3){
             String classcode = strings[0];
             String date = strings[1];
             String studentcode = strings[2];
             String ischecked = strings[3];
             postParameters = "classcode=" + classcode + "&date=" + date + "&studentcode=" + studentcode +
                             "&ischecked=" + ischecked;
-            extramode = "insertattendant";
+            extramode = "insertattendant.php";
         }
 
         String strurl = GlobalVariables.URL+ extramode;

@@ -1,6 +1,11 @@
 package com.example.voidbluelabtop.sleepinclass.DATABASE;
 
+import android.support.constraint.solver.Goal;
+
+import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,25 +21,31 @@ public class Singleton_TempModel {
 
     List classtable, studenttable, attandanttable;
     List classelement, student, attandant;
-    private Singleton_TempModel() {
+    GetData GD = new GetData();
 
+    private Singleton_TempModel() {
         classtable = new ArrayList();
         studenttable = new ArrayList();
         attandanttable = new ArrayList();
+
+
+
+
+
     }
 
     //로그인 API 제일 중요
     public void addclass(String classname, String time, String classroom, String beaconMajor, String classcode, String password){
-
-        //Select * from class
-        classelement = new ArrayList();
-        classelement.add(classname);
-        classelement.add(time);
-        classelement.add(classroom);
-        classelement.add(beaconMajor);
-        classelement.add(classcode);
-//        classelement.add(password);
-        classtable.add(classelement);
+//
+//        //Select * from class
+//        classelement = new ArrayList();
+//        classelement.add(classname);
+//        classelement.add(time);
+//        classelement.add(classroom);
+//        classelement.add(beaconMajor);
+//        classelement.add(classcode);
+////        classelement.add(password);
+//        classtable.add(classelement);
     }
 
     public void addstudent( String studentname, String studentmajor, String studentcode){

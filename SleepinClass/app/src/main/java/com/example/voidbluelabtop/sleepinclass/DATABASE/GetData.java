@@ -1,9 +1,13 @@
 package com.example.voidbluelabtop.sleepinclass.DATABASE;
 
 import android.app.ProgressDialog;
+import android.opengl.GLDebugHelper;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListAdapter;
+
+import com.example.voidbluelabtop.sleepinclass.Utils.Get_Current_Class;
+import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,38 +28,46 @@ public class GetData extends AsyncTask<String, Void, String> {
     ProgressDialog progressDialog;
     String errorString = null;
     String mJsonString;
-
+    HashMap<String,String> hashedJson;
+    int mode;
+    String serverURL;
+    String jasonTag;
     @Override
     protected void onPreExecute() {
+
     }
 
 
     @Override
     protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-
-        progressDialog.dismiss();
-        Log.d("resp", "response  - " + result);
-
-        if (result == null){
-            Log.d("null error", "onposetexcute error");
-        }
-        else {
-            mJsonString = result;
-            showResult();
+        process();
+    }
+    public void setMode(String mode){
+        if (mode.equals("signedclass")){
+            this.mode = 1;
+            serverURL = GlobalVariables.URL + "getsignedclass.php";
+            jasonTag = "signedclass";
+        } else if(mode.equals("class")){
+            this.mode = 2;
+            serverURL = GlobalVariables.URL + "getclass.php";
+            jasonTag = "class";
+        } else if(mode.equals("student")){
+            this.mode = 3;
+            serverURL = GlobalVariables.URL + "getstudent.php";
+            jasonTag = "student";
+        } else if(mode.equals("attendant")){
+            this.mode = 4;
+            serverURL = GlobalVariables.URL + "getattendant.php";
+            jasonTag = "attendant";
         }
 
     }
 
-
     @Override
     protected String doInBackground(String... params) {
 
-        String serverURL = params[0];
-
 
         try {
-
             URL url = new URL(serverURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -69,10 +81,9 @@ public class GetData extends AsyncTask<String, Void, String> {
             Log.d("error", "response code - " + responseStatusCode);
 
             InputStream inputStream;
-            if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+            if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                 inputStream = httpURLConnection.getInputStream();
-            }
-            else{
+            } else {
                 inputStream = httpURLConnection.getErrorStream();
             }
 
@@ -83,7 +94,7 @@ public class GetData extends AsyncTask<String, Void, String> {
             StringBuilder sb = new StringBuilder();
             String line;
 
-            while((line = bufferedReader.readLine()) != null){
+            while ((line = bufferedReader.readLine()) != null) {
                 sb.append(line);
             }
 
@@ -101,31 +112,78 @@ public class GetData extends AsyncTask<String, Void, String> {
 
             return null;
         }
-
     }
 
 
-    private void showResult(){
+    private HashMap<String, String> process(){
         try {
-            JSONObject jsonObject = new JSONObject(mJsonString);
-            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+            JSONObject jsonObject = new JSONObject();
+            JSONArray jsonArray = jsonObject.getJSONArray(jasonTag);
+            HashMap<String, String> hashMap = new HashMap<>();
+            if (mode == 1) {
+                for (int i = 0; i < jsonArray.length(); i++) {
 
-            for(int i=0;i<jsonArray.length();i++){
+                    JSONObject item = jsonArray.getJSONObject(i);
 
-                JSONObject item = jsonArray.getJSONObject(i);
+                    String classcode = item.getString("classcode");
+                    String studentcode = item.getString("studentcode");
 
-                String name = item.getString("classcode");
-                String address = item.getString("studentcode");
 
-                HashMap<String,String> hashMap = new HashMap<>();
 
-                hashMap.put(TAG_NAME, name);
-                hashMap.put(TAG_ADDRESS, address);
-\
+                    hashMap.put("classcode" + i, classcode);
+                    hashMap.put("studentcode" + i, studentcode);
+                }
+            } else if (mode == 2){
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String classname = item.getString("classname");
+                    String time = item.getString("time");
+                    String classroom = item.getString("classroom");
+                    String beaconmajor = item.getString("beaconmajor");
+                    String classcode = item.getString("classcode");
+
+                    hashMap.put("classname" + i, classname);
+                    hashMap.put("time" + i, time);
+                    hashMap.put("classroom" + i, classroom);
+                    hashMap.put("beaconmajor" + i , beaconmajor);
+                    hashMap.put("classcode" + i , classcode);
+                }
+            } else if (mode == 3){
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String classcode = item.getString("classcode");
+                    String studentcode = item.getString("studentcode");
+
+
+                    hashMap.put("classcode" + i, classcode);
+                    hashMap.put("studentcode" + i, studentcode);
+                }
+            } else if (mode == 4){
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String classcode = item.getString("classcode");
+                    String studentcode = item.getString("studentcode");
+
+
+                    hashMap.put("classcode" + i, classcode);
+                    hashMap.put("studentcode" + i, studentcode);
+                }
             }
+            hashedJson = hashMap;
+            return hashMap;
         } catch (JSONException e) {
 
-            Log.d(TAG, "showResult : ", e);
+            Log.d("tag", "showResult : ", e);
         }
-
+        return null;
     }
+
+    public HashMap<String, String> getHashedJson(){
+        return hashedJson;
+    }
+}

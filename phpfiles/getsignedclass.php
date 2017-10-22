@@ -1,6 +1,6 @@
 <?php  
 
-$link=mysqli_connect("54.250.164.132","root","root", "k_hack" );  
+$link=mysqli_connect("localhost","root","root", "k-hack" );  
 if (!$link)  
 {  
     echo "MySQL 접속 에러 : ";

@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
+import com.example.voidbluelabtop.sleepinclass.DATABASE.UserDataController;
 import com.example.voidbluelabtop.sleepinclass.Services.BeaconDetect;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.CreateClass;
@@ -31,6 +32,7 @@ import com.example.voidbluelabtop.sleepinclass.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends WeekView_BASE implements NavigationView.OnNavigationItemSelectedListener {
@@ -248,24 +250,22 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-
+        UserDataController UDC = new UserDataController();
         Split_Date SD = new Split_Date();
-        Singleton_TempModel ST = Singleton_TempModel.getInstance();
+//        Singleton_TempModel ST = Singleton_TempModel.getInstance();
         WeekViewEvent event;
-
-        for(int i = 0 ; i < ST.getclass().size() ; i++){
+        List classes = UDC.getMyClasses("2013108213");
+        for(int i = 0 ; i < classes.size() ; i++){
             
-            String date = (String) ((List)ST.getclass().get(i)).get(1);
+            String date = (String) ((HashMap)classes.get(i)).get("time");
             SD.setdate(date);
-
-            Log.d("", "date: " + date + SD.getlength());
             for (int j = 0; j < SD.getlength(); j++) {
                 SD.setdateline(j);
                 Calendar startTime = Calendar.getInstance();
                 startTime.setTime(WeekViewUtil.nearestmonday().getTime());
                 startTime.set(Calendar.HOUR_OF_DAY, SD.getStarthour() + 15);
                 startTime.set(Calendar.DAY_OF_WEEK, SD.getdaycode());
-                Log.d("","ahfmrpTek" + ST.getclass().size() + SD.getStarthour());
+//                Log.d("","ahfmrpTek" + classes.size() + SD.getStarthour());
                 startTime.set(Calendar.MINUTE, SD.getStartminute());
                 startTime.set(Calendar.MONTH, newMonth - 1);
                 startTime.set(Calendar.YEAR, newYear);
@@ -275,7 +275,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
                 endTime.set(Calendar.MINUTE, SD.getEndminute());
                 endTime.set(Calendar.MONTH, newMonth - 1);
                 event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
-                event.setName((String)((List)ST.getclass().get(i)).get(0) +"\n" + (String)((List)ST.getclass().get(i)).get(2));
+                event.setName((String)((HashMap)classes.get(i)).get("name") +"\n" + (String)((HashMap)classes.get(i)).get("classroom"));
                 event.setColor(getResources().getColor(R.color.event_color_01));
                 events.add(event);
             }

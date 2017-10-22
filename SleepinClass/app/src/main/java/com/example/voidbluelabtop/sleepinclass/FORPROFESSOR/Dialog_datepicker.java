@@ -46,8 +46,6 @@ public class Dialog_datepicker extends Dialog {
                 int week = cal.get(Calendar.DAY_OF_WEEK);
 
 
-
-                Log.d("dasd", week + "dydlf");
                 char dayofweek;
                 if (week == 1){
                     dayofweek = '일';
