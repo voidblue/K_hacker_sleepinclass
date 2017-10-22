@@ -19,12 +19,12 @@ public class UserDataController {
     GetData GD;
     ArrayList<HashMap<String, String>> myClasses;
     public UserDataController() {
-        GD = new GetData();
+
     }
 
     public void processClass(String studentcode) {
 
-
+        GD = new GetData();
         myClasses = new ArrayList<>();
 
         ArrayList<String> classCodes = new ArrayList();
