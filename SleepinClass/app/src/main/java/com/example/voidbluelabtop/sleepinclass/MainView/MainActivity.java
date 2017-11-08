@@ -31,8 +31,11 @@ import com.example.voidbluelabtop.sleepinclass.Utils.Split_Date;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 import com.example.voidbluelabtop.sleepinclass.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -264,37 +267,44 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
         }
 
 
-        Split_Date SD = new Split_Date();
 //        Singleton_TempModel ST = Singleton_TempModel.getInstance();
         WeekViewEvent event;
         Log.d("", "onMonthChange: " + myClasses.size());
         for(int i = 0 ; i < myClasses.size() ; i++){
 
             HashMap obj = (HashMap)myClasses.get(i);
-            String date = (String)obj.get("time");
-            String TAG = "time";
-            SD.setdate(date);
-            for (int j = 0; j < SD.getlength(); j++) {
-                SD.setdateline(j);
-                Calendar startTime = Calendar.getInstance();
-                startTime.setTime(WeekViewUtil.nearestmonday().getTime());
-                startTime.set(Calendar.HOUR_OF_DAY, SD.getStarthour() + 15);
-                Log.d(TAG, "onMonthChange: " + Calendar.HOUR_OF_DAY + "" + SD.getStarthour());
-                startTime.set(Calendar.DAY_OF_WEEK, SD.getdaycode());
-                startTime.set(Calendar.MINUTE, SD.getStartminute());
-                startTime.set(Calendar.MONTH, newMonth - 1);
-                startTime.set(Calendar.YEAR, newYear);
-                Calendar endTime = (Calendar) startTime.clone();
-                endTime.set(Calendar.DAY_OF_WEEK, SD.getdaycode());
-                endTime.set(Calendar.HOUR, SD.getEndhour()+15);
-                Log.d(TAG, "onMonthChange: " + Calendar.HOUR + "" + SD.getEndhour());
-                endTime.set(Calendar.MINUTE, SD.getEndminute());
-                endTime.set(Calendar.MONTH, newMonth - 1);
-                event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
-                event.setName((String)obj.get("classname") +"\n" + (String)obj.get("classroom"));
-                event.setColor(getResources().getColor(R.color.event_color_01));
-                events.add(event);
+            String strdate = (String)obj.get("date");
+            int duration = Integer.parseInt((String)obj.get("duration"));
+            SimpleDateFormat SDF = new SimpleDateFormat();
+            Date date = new Date();
+            try {
+                date = SDF.parse(strdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+            String TAG = "time";
+            Log.d(TAG, "onMonthChange: " + date);
+
+
+            Calendar startTime = Calendar.getInstance();
+            startTime.setTime(WeekViewUtil.nearestmonday().getTime());
+            startTime.set(Calendar.HOUR_OF_DAY, date.getHours() + 15);
+//            Log.d(TAG, "onMonthChange: " + Calendar.HOUR_OF_DAY + "" + SD.getStarthour());
+            startTime.set(Calendar.DAY_OF_WEEK, date.getDay());
+            startTime.set(Calendar.MINUTE, date.getMinutes());
+            startTime.set(Calendar.MONTH, newMonth - 1);
+            startTime.set(Calendar.YEAR, newYear);
+            Calendar endTime = (Calendar) startTime.clone();
+            endTime.set(Calendar.DAY_OF_WEEK, date.getDay());
+            endTime.set(Calendar.HOUR, date.getHours() + duration +15);
+//            Log.d(TAG, "onMonthChange: " + Calendar.HOUR + "" + date.getEndhour());
+            endTime.set(Calendar.MINUTE, date.getMinutes());
+            endTime.set(Calendar.MONTH, newMonth - 1);
+            event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
+            event.setName((String)obj.get("classname") +"\n" + (String)obj.get("classroom"));
+            event.setColor(getResources().getColor(R.color.event_color_01));
+            events.add(event);
+
         }
         return events;
     }

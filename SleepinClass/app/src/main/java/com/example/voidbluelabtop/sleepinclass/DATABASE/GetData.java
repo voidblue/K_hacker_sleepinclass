@@ -130,6 +130,7 @@ public class GetData extends AsyncTask<String, Void, String> {
 
                     String classname = item.getString("classname");
                     String date = item.getString("date");
+                    String duration = item.getString("duration");
                     String classroom = item.getString("classroom");
                     String beaconmajor = item.getString("beaconmajor");
                     String classcode = item.getString("classcode");
@@ -137,6 +138,7 @@ public class GetData extends AsyncTask<String, Void, String> {
 
                     hashMap.put("classname" + i, classname);
                     hashMap.put("date" + i, date);
+                    hashMap.put("duration" + i, duration);
                     hashMap.put("classroom" + i, classroom);
                     hashMap.put("beaconmajor" + i , beaconmajor);
                     hashMap.put("classcode" + i , classcode);

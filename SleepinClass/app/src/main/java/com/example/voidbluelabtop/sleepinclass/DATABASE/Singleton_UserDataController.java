@@ -69,7 +69,8 @@ public class Singleton_UserDataController {
                 if (hashedClasses.get("classcode"+i).equals(classCodes.get(j))) {
                     HashMap<String, String> classdata = new HashMap();
                     classdata.put("classname" , hashedClasses.get("classname"+i));
-                    classdata.put("time" , hashedClasses.get("time"+i));
+                    classdata.put("date" , hashedClasses.get("date"+i));
+                    classdata.put("duration", hashedClasses.get("duration" + i));
                     classdata.put("classroom" , hashedClasses.get("classroom"+i));
                     classdata.put("beaconmajor" , hashedClasses.get("beaconmajor"+i));
                     classdata.put("classcode" , hashedClasses.get("classcode"+i));
@@ -97,6 +98,7 @@ public class Singleton_UserDataController {
                 HashMap<String, String> classdata = new HashMap();
                 classdata.put("classname" , hashedClasses.get("classname"+i));
                 classdata.put("date" , hashedClasses.get("date"+i));
+                classdata.put("duration", hashedClasses.get("duration" + i));
                 classdata.put("classroom" , hashedClasses.get("classroom"+i));
                 classdata.put("beaconmajor" , hashedClasses.get("beaconmajor"+i));
                 classdata.put("classcode" , hashedClasses.get("classcode"+i));
