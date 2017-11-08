@@ -14,6 +14,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.R.id.input;
 
@@ -62,10 +65,17 @@ public class InsertData extends AsyncTask<String, Void, String>{
         }
         else if(this.mode == 3){
             String classcode = strings[0];
-            String date = strings[1];
+            String strdate = strings [1];
+            SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = null;
+            try {
+                date = SDF.parse(strdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             String studentcode = strings[2];
             String ischecked = strings[3];
-            postParameters = "classcode=" + classcode + "&date=" + date + "&studentcode=" + studentcode +
+            postParameters = "classcode=" + classcode + "&date="+ date + "&studentcode=" + studentcode +
                             "&ischecked=" + ischecked;
             extramode = "insertattendant.php";
         }
@@ -116,9 +126,10 @@ public class InsertData extends AsyncTask<String, Void, String>{
     }
 
     public static void main(String args[]){
-        InsertData id = new InsertData("student");
-        id.execute("이름","전공","코드");
-
+//        InsertData id = new InsertData("student");
+//        id.execute("이름","전공","코드");
+        Date date = new Date();
+        System.out.println(date.toString());
 
     }
 

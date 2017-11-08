@@ -24,7 +24,7 @@ public class Preference{
 
     public Boolean getBoolean(String Key){
         Boolean temp;
-        temp = pref.getBoolean(Key,false);
+        temp = pref.getBoolean(Key,true);
         return temp;
     }
     public float getFloat(String Key){

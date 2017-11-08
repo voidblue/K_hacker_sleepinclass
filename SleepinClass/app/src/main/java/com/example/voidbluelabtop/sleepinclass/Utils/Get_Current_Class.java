@@ -1,5 +1,7 @@
 package com.example.voidbluelabtop.sleepinclass.Utils;
 
+import android.util.Log;
+
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 
 import java.util.Date;
@@ -43,9 +45,9 @@ public class Get_Current_Class {
             currentDayCode = 1000000;
         }
 
-
-        List classlist = UDC.getMyClasses();
-        for (int i = 0 ; i < classlist.size() ; i++){
+        UDC.processProfessorClass(GlobalVariables.userCode);
+        List classlist = UDC.getProfessorclasses();
+        for (int i = 0 ; i < classlist.size(); i++){
             HashMap inst = (HashMap) classlist.get(i);
             String time = (String) inst.get("time");
             SD.setdate(time);
@@ -54,9 +56,14 @@ public class Get_Current_Class {
                 if (SD.getdaycode() == currentDayCode) {
                     int start = SD.getStarthour() * 60 + SD.getStartminute();
                     int end = SD.getEndminute() * 60 + SD.getEndminute();
+                    Log.d("", "getCurrent_Class: " + currenttime[0] + "    " + currenttime[1]);
                     int now = Integer.parseInt(currenttime[0])*60 + Integer.parseInt(currenttime[1]);
                     if(now < end && now > start){
                         current_Class = inst;
+                        break;
+                    }
+                    else{
+                        current_Class = null;
                     }
                 }
             }

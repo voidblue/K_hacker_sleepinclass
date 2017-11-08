@@ -96,7 +96,7 @@ public class Singleton_UserDataController {
             if (hashedClasses.get("professorcode"+i).equals(professorCode)) {
                 HashMap<String, String> classdata = new HashMap();
                 classdata.put("classname" , hashedClasses.get("classname"+i));
-                classdata.put("time" , hashedClasses.get("time"+i));
+                classdata.put("date" , hashedClasses.get("date"+i));
                 classdata.put("classroom" , hashedClasses.get("classroom"+i));
                 classdata.put("beaconmajor" , hashedClasses.get("beaconmajor"+i));
                 classdata.put("classcode" , hashedClasses.get("classcode"+i));
@@ -109,8 +109,9 @@ public class Singleton_UserDataController {
 
     public void processAttend(String classcode){
         GD = new GetData();
-        GD.setMode("attnedant");
+        GD.setMode("attendant");
         myAttendant = new ArrayList();
+        GD.execute();
         while(GD.mJsonString == null) {
             Log.d("", "getMyClasses: " + GD.getStatus());
         }

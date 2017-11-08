@@ -19,6 +19,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -126,14 +129,14 @@ public class GetData extends AsyncTask<String, Void, String> {
                     JSONObject item = jsonArray.getJSONObject(i);
 
                     String classname = item.getString("classname");
-                    String time = item.getString("time");
+                    String date = item.getString("date");
                     String classroom = item.getString("classroom");
                     String beaconmajor = item.getString("beaconmajor");
                     String classcode = item.getString("classcode");
                     String professorcode = item.getString("professorcode");
 
                     hashMap.put("classname" + i, classname);
-                    hashMap.put("time" + i, time);
+                    hashMap.put("date" + i, date);
                     hashMap.put("classroom" + i, classroom);
                     hashMap.put("beaconmajor" + i , beaconmajor);
                     hashMap.put("classcode" + i , classcode);
@@ -156,15 +159,19 @@ public class GetData extends AsyncTask<String, Void, String> {
                 }
             } else if (mode == 4){
                 for (int i = 0; i < jsonArray.length(); i++) {
-
+                    SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     JSONObject item = jsonArray.getJSONObject(i);
 
                     String classcode = item.getString("classcode");
+                    String strdate = item.getString("date");
                     String studentcode = item.getString("studentcode");
+                    String ischecked = item.getString("ischecked");
 
 
                     hashMap.put("classcode" + i, classcode);
+                    hashMap.put("date" + i, strdate);
                     hashMap.put("studentcode" + i, studentcode);
+                    hashMap.put("ischecked" + i , ischecked);
                 }
             }
             hashedJson = hashMap;
