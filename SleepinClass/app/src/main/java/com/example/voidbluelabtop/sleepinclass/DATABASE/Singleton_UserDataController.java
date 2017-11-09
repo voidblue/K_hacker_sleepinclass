@@ -39,33 +39,27 @@ public class Singleton_UserDataController {
         ArrayList<String> classCodes = new ArrayList();
         GD.setMode("signedclass");
         GD.execute();
-        Log.d("", "getMyClasses: " + GD.getStatus());
         while(GD.mJsonString == null){
-            Log.d("", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedClassCode = GD.getHashedJson();
         GD.cancel(true);
-        Log.d("", "getMyClasses: "+hashedClassCode.size());
         for (int i = 0; i < hashedClassCode.size() / 2; i++) {
             String recievedStudentCode = hashedClassCode.get("studentcode" + i);
             if (recievedStudentCode.equals(studentcode)) {
                 classCodes.add(hashedClassCode.get("classcode" + i));
             }
         }
-        Log.d("", "processClass: " + classCodes.size());
         GD = new GetData();
         GD.setMode("class");
         GD.execute();
         while(GD.mJsonString == null) {
-            Log.d("", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedClasses = GD.getHashedJson();
         GD.cancel(true);
         for (int i = 0; i < hashedClasses.size() / 6; i++) {
             for (int j = 0; j < classCodes.size(); j++) {
-                Log.d("", "processClass: " + hashedClasses.get("classcode"+i) + "  " + classCodes.get(j));
                 if (hashedClasses.get("classcode"+i).equals(classCodes.get(j))) {
                     HashMap<String, String> classdata = new HashMap();
                     classdata.put("classname" , hashedClasses.get("classname"+i));
@@ -86,7 +80,6 @@ public class Singleton_UserDataController {
         GD.setMode("class");
         GD.execute();
         while(GD.mJsonString == null) {
-            Log.d("", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedClasses = GD.getHashedJson();
@@ -98,6 +91,7 @@ public class Singleton_UserDataController {
                 HashMap<String, String> classdata = new HashMap();
                 classdata.put("classname" , hashedClasses.get("classname"+i));
                 classdata.put("date" , hashedClasses.get("date"+i));
+
                 classdata.put("duration", hashedClasses.get("duration" + i));
                 classdata.put("classroom" , hashedClasses.get("classroom"+i));
                 classdata.put("beaconmajor" , hashedClasses.get("beaconmajor"+i));
@@ -115,16 +109,17 @@ public class Singleton_UserDataController {
         myAttendant = new ArrayList();
         GD.execute();
         while(GD.mJsonString == null) {
-            Log.d("", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedAttendant = GD.getHashedJson();
         int j = 0;
-        for (int i = 0 ; i < hashedAttendant.size() ; i++){
-            if(hashedAttendant.get("classcode"+i).equals("classcode")){
+        for (int i = 0 ; i < hashedAttendant.size()/4 ; i++){
+            Log.d("", "processAttend: " + hashedAttendant.get("classcode" + i));
+            if(hashedAttendant.get("classcode"+i).equals(classcode)){
                 HashMap<String, String> attendant = new HashMap();
+                attendant.put("studentcode", hashedAttendant.get("studentcode"+i));
                 attendant.put("date",hashedAttendant.get("date"+i));
-                attendant.put("date",hashedAttendant.get("ischecked"+i));
+                attendant.put("ischecked",hashedAttendant.get("ischecked"+i));
                 myAttendant.add(attendant);
 
             }
@@ -137,7 +132,6 @@ public class Singleton_UserDataController {
         GD.setMode("signedclass");
         GD.execute();
         while(GD.mJsonString == null){
-//            Log.d("", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedClassCode = GD.getHashedJson();
@@ -156,12 +150,11 @@ public class Singleton_UserDataController {
         GD.execute();
         myClassStudents = new ArrayList();
         while(GD.mJsonString == null) {
-            Log.d("xxx", "getMyClasses: " + GD.getStatus());
         }
         GD.process();
         HashMap<String, String> hashedmyClassStudnet = GD.getHashedJson();
-        Log.d("", "processmyClassStudent: " + hashedmyClassStudnet.get("studentcode"+0));
-        Log.d("", "processmyClassStudent: " + studentCodes.get(0));
+//        Log.d("", "processmyClassStudent: " + hashedmyClassStudnet.get("studentcode"+0));
+//        Log.d("", "processmyClassStudent: " + studentCodes.get(0));
         for (int i = 0 ; i < hashedmyClassStudnet.size()/4 ; i++){
             for(int j  = 0 ; j < studentCodes.size() ; j++){
                 if (hashedmyClassStudnet.get("studentcode"+i).equals(studentCodes.get(j))) {

@@ -15,6 +15,7 @@ import com.example.voidbluelabtop.sleepinclass.Adapter.Classlist_Adapter;
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 public class MyClasslist extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class MyClasslist extends AppCompatActivity {
 
         final ListView listview = (ListView) findViewById(R.id.myclasslist);
         listview.setAdapter(CA);
+
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

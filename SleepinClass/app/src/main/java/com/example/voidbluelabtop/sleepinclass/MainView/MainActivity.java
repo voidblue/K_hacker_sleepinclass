@@ -21,13 +21,13 @@ import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewUtil;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
+import com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Attendant;
 import com.example.voidbluelabtop.sleepinclass.Services.BeaconDetect;
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_TempModel;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.CreateClass;
 import com.example.voidbluelabtop.sleepinclass.FORPROFESSOR.MyClasslist;
 import com.example.voidbluelabtop.sleepinclass.FORSTUDENT.Enroll_class;
 import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
-import com.example.voidbluelabtop.sleepinclass.Utils.Split_Date;
 import com.example.voidbluelabtop.sleepinclass.USERDATA.Singleton_Tempdata;
 import com.example.voidbluelabtop.sleepinclass.R;
 
@@ -228,8 +228,9 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
         } else if (id == R.id.item_enrollclass) {
             Enroll_class EC = new Enroll_class(this);
             EC.show();
-        } else if(id == R.id.item_attandent_forstudent){
-
+        } else if (id == R.id.item_attandent_forstudent){
+            Intent i = new Intent(getApplicationContext(), Attendant.class);
+            startActivity(i);
         } else if(id == R.id.item_licence){
             Intent i = new Intent(getApplicationContext(), NoticeLicense.class);
             startActivity(i);
@@ -275,7 +276,7 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
             HashMap obj = (HashMap)myClasses.get(i);
             String strdate = (String)obj.get("date");
             int duration = Integer.parseInt((String)obj.get("duration"));
-            SimpleDateFormat SDF = new SimpleDateFormat();
+            SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Date date = new Date();
             try {
                 date = SDF.parse(strdate);
@@ -283,7 +284,8 @@ public class MainActivity extends WeekView_BASE implements NavigationView.OnNavi
                 e.printStackTrace();
             }
             String TAG = "time";
-            Log.d(TAG, "onMonthChange: " + date);
+
+//            Toast.makeText(this, date.toString(),Toast.LENGTH_LONG).show();
 
 
             Calendar startTime = Calendar.getInstance();

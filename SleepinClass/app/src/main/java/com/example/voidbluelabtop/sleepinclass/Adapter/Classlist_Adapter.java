@@ -12,6 +12,9 @@ import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataContro
 import com.example.voidbluelabtop.sleepinclass.R;
 import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,8 +30,13 @@ public class Classlist_Adapter extends BaseAdapter {
     //mode==0 학생관리, 1이면 출결내역
     public Classlist_Adapter(){
         UDC = Singleton_UserDataController.getInstance();
-        UDC.processProfessorClass(GlobalVariables.userCode);
-        classtable = UDC.getProfessorclasses();
+        if (GlobalVariables.userauth == 1) {
+            UDC.processProfessorClass(GlobalVariables.userCode);
+            classtable = UDC.getProfessorclasses();
+        }else if (GlobalVariables.userauth == 0){
+            UDC.processClass(GlobalVariables.userCode);
+            classtable = UDC.getMyClasses();
+        }
 
     }
 
@@ -67,9 +75,37 @@ public class Classlist_Adapter extends BaseAdapter {
         TextView classname = (TextView) convertView.findViewById(R.id.TV_myclassname) ;
         TextView classtime = (TextView) convertView.findViewById(R.id.TV_myclasstime) ;
         TextView classroom = (TextView) convertView.findViewById(R.id.TV_myclassroom) ;
+        String strdate =  (String)classdata.get("date");
+        SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date date = new Date();
+        try {
+            date = SDF.parse(strdate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String day = "";
+        if (date.getDay() == 0){
+            day  = "일";
+        }else if(date.getDay() == 1){
+            day = "월";
+        }else if(date.getDay() == 2){
+            day = "화";
+        }else if(date.getDay() == 3){
+            day = "수";
+        }else if(date.getDay() == 4){
+            day = "목";
+        }else if(date.getDay() == 5){
+            day = "금";
+        }else if(date.getDay() == 6){
+            day = "토";
+        }else{
 
+        }
+        int duration = Integer.parseInt((String)classdata.get("duration"));
+        String timetext = day + date.getHours() + " : " + date.getMinutes() + " ~ " +
+                (date.getHours() + duration) + " : " + date.getMinutes();
         classname.setText((String)classdata.get("classname"));
-        classtime.setText((String)classdata.get("time"));
+        classtime.setText(timetext);
         classroom.setText((String)classdata.get("classroom"));
 
         return convertView;

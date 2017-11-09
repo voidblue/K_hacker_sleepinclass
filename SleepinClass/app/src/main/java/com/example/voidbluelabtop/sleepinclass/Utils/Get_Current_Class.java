@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.example.voidbluelabtop.sleepinclass.DATABASE.Singleton_UserDataController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,58 +16,42 @@ import java.util.List;
 
 public class Get_Current_Class {
     Date date;
-    Split_Date SD;
     Singleton_UserDataController UDC;
     HashMap current_Class;
     public Get_Current_Class(){
         date = new Date();
-        SD = new Split_Date();
         UDC = Singleton_UserDataController.getInstance();
     }
 
     public HashMap getCurrent_Class(){
-        int currentDayCode;
 
-        String current_ClassCode = "None";
-        String[] spliteddate = date.toString().split(" ");
-        String[] currenttime = spliteddate[4].split(":");
-
-        if (spliteddate[0].equals("Mon")){
-            currentDayCode = 1;
-        }else if (spliteddate[0].equals("Tue")){
-            currentDayCode = 2;
-        }else if (spliteddate[0].equals("Wen")){
-            currentDayCode = 3;
-        }else if (spliteddate[0].equals("Thu")){
-            currentDayCode = 4;
-        }else if (spliteddate[0].equals("Fri")){
-            currentDayCode = 5;
-        }
-        else {
-            currentDayCode = 1000000;
-        }
-
-        UDC.processProfessorClass(GlobalVariables.userCode);
-        List classlist = UDC.getProfessorclasses();
+        UDC.processClass(GlobalVariables.userCode);
+        List classlist = UDC.getMyClasses();
         for (int i = 0 ; i < classlist.size(); i++){
             HashMap inst = (HashMap) classlist.get(i);
-            String time = (String) inst.get("time");
-            SD.setdate(time);
-            for (int j = 0 ; j < SD.getlength() ; j++ ){
-                SD.setdateline(j);
-                if (SD.getdaycode() == currentDayCode) {
-                    int start = SD.getStarthour() * 60 + SD.getStartminute();
-                    int end = SD.getEndminute() * 60 + SD.getEndminute();
-                    Log.d("", "getCurrent_Class: " + currenttime[0] + "    " + currenttime[1]);
-                    int now = Integer.parseInt(currenttime[0])*60 + Integer.parseInt(currenttime[1]);
-                    if(now < end && now > start){
-                        current_Class = inst;
-                        break;
-                    }
-                    else{
-                        current_Class = null;
-                    }
+            String strdate = (String) inst.get("date");
+            SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            int duration = Integer.parseInt((String)inst.get("duration"));
+            Date classdate = null;
+            try {
+                classdate = SDF.parse(strdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (classdate.getDay() == date.getDay()) {
+                int start = classdate.getHours() * 60 + classdate.getMinutes();
+                int end = (classdate.getHours() + duration) * 60 + classdate.getMinutes();
+//                    Log.d("", "getCurrent_Class: " + currenttime[0] + "    " + currenttime[1]);
+                int now = date.getHours() * 60 + date.getMinutes();
+                if(now < end && now > start){
+                    current_Class = inst;
+                    break;
                 }
+                else{
+                    current_Class = null;
+                }
+
             }
         }
         return current_Class;
