@@ -22,6 +22,7 @@ import com.example.voidbluelabtop.sleepinclass.DeviceController.SoundContoller;
 import com.example.voidbluelabtop.sleepinclass.Utils.Get_Current_Class;
 import com.example.voidbluelabtop.sleepinclass.Utils.GlobalVariables;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +68,11 @@ public class BeaconDetect extends Service {
                 SB.set_beaconlist(list);
                 HashMap currentClass = GCC.getCurrent_Class();
                 Date date = new Date();
+                SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                String strdate = SDF.format(date);
+                preference.putData("prevHour", 100);
                 prevHour = preference.getInt("prevHour");
+
                 if (currentClass != null) {
                     String classcode = ((String)currentClass.get("classcode"));
                     int currenthour = date.getHours();
@@ -77,14 +82,16 @@ public class BeaconDetect extends Service {
                             for (int i = 0; i < list.size(); i++) {
                                 Beacon B = list.get(i);
                                 if (currentClass.get("beaconmajor").equals(Integer.toString(B.getMajor()))) {
-                                    Log.d(TAG, "onBeaconsDiscovered: " + "6번 테스트");
+                                    Log.d(TAG, "onBeaconsDiscovered: " + "6번 테스트" + strdate);
 
-                                    InsertData ID = new InsertData("attendent");
+                                    InsertData ID = new InsertData("attendant");
                                     if(date.getMinutes()<10) {
-                                        ID.execute(classcode, date.toString(), GlobalVariables.userCode, "1");
+                                        ID.execute(classcode, strdate, GlobalVariables.userCode, "1");
                                     }else {
-                                        ID.execute(classcode, date.toString(), GlobalVariables.userCode, "2");
+                                        ID.execute(classcode, strdate, GlobalVariables.userCode, "2");
                                     }
+                                    preference.putData("prevHour", 100);
+                                    Log.d(TAG, "onBeaconsDiscovered: " + "7번 테스트");
                                 }
                             }
                         }

@@ -66,17 +66,18 @@ public class InsertData extends AsyncTask<String, Void, String>{
         else if(this.mode == 3){
             String classcode = strings[0];
             String strdate = strings [1];
-            SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = null;
-            try {
-                date = SDF.parse(strdate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//            Date date = null;
+//            try {
+//                date = SDF.parse(strdate);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
             String studentcode = strings[2];
             String ischecked = strings[3];
-            postParameters = "classcode=" + classcode + "&date="+ date + "&studentcode=" + studentcode +
+            postParameters = "classcode=" + classcode + "&date="+ strdate + "&studentcode=" + studentcode +
                             "&ischecked=" + ischecked;
+            Log.d("", "doInBackground: " + "8번테스트" + strdate);
             extramode = "insertattendant.php";
         }
 

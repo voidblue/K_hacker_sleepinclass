@@ -27,6 +27,8 @@ if($classcode !="" and $date !="" and $studentcode !="" and $ $ischecked ){
       echo "SQL문 처리중 에러 발생 : ";
       echo mysqli_error($link);
   }
+}else{
+  echo "에러";
 }
 
 
@@ -34,3 +36,22 @@ if($classcode !="" and $date !="" and $studentcode !="" and $ $ischecked ){
 mysqli_close($link);
 
 ?>
+<?php
+
+$android = strpos(SERVER['HTTP_USER_AGENT'], "Android");
+
+if(!$android){
+   ?>
+   <html>
+   <body>
+     <form action="<?php $_PHP_SELF ?>" method="POST">
+       studentcode: <input type = "text" name = "studentcode"/>
+       date: <input type = "text" name = "date"/>
+       studentcode: <input type = "text" name = "studentcode"/>
+       ischecked: <input type = "text" name = "ischecked" />
+       <input type = "submit" />
+    </form>
+  </body>
+  </html>
+  <?php
+}
