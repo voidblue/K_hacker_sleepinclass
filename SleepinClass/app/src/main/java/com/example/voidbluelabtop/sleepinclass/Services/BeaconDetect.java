@@ -68,19 +68,14 @@ public class BeaconDetect extends Service {
                 HashMap currentClass = GCC.getCurrent_Class();
                 Date date = new Date();
                 prevHour = preference.getInt("prevHour");
-                Log.d(TAG, "onBeaconsDiscovered: " + "1번째 테스트"+ currentClass);
                 if (currentClass != null) {
-                    Log.d(TAG, "onBeaconsDiscovered: " + "2번째 테스트" + currentClass + "  asd " + prevHour);
                     String classcode = ((String)currentClass.get("classcode"));
                     int currenthour = date.getHours();
                     if (currenthour != prevHour) {
-                        Log.d(TAG, "onBeaconsDiscovered: " + "3번째 테스트");
                         prevHour = currenthour;
                         if (!list.isEmpty()) {
-                            Log.d(TAG, "onBeaconsDiscovered: " + "4번째 테스트" + currentClass.get("beaconmajor"));
                             for (int i = 0; i < list.size(); i++) {
                                 Beacon B = list.get(i);
-                                Log.d(TAG, "onBeaconsDiscovered: " + "5번 테스트" + B.getMajor());
                                 if (currentClass.get("beaconmajor").equals(Integer.toString(B.getMajor()))) {
                                     Log.d(TAG, "onBeaconsDiscovered: " + "6번 테스트");
 
