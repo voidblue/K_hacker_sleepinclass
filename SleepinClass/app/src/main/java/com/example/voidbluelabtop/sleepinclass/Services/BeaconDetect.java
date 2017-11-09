@@ -36,21 +36,19 @@ public class BeaconDetect extends Service {
     private Get_Current_Class GCC;
     private Singleton_UserDataController UDC;
     private Preference preference;
+    InsertData ID;
     String TAG = "비콘 디텍트 서비스";
     int prevHour;
     final private BeaconRegion ALL_BEACON = new BeaconRegion("regionID", null, null, null);
     @Override
     public void onCreate() {
-
-        hourchanged = true;
+        ID = new InsertData("attendant");
         preference = new Preference(this);
-        Date time = new Date();
         GCC = new Get_Current_Class();
         CC = new SoundContoller(this);
-        SB = Singleton_BeaconList.getInstance();
         bm = new BeaconManager(getApplicationContext());
         UDC = Singleton_UserDataController.getInstance();
-
+        SB = Singleton_BeaconList.getInstance();
         EstimoteSDK.initialize(getApplicationContext(),
                 "estimotebeaconsample-ivb", "45f6fc31fd613624b0f24df41b121db6");
         prevHour = -5;
@@ -60,6 +58,7 @@ public class BeaconDetect extends Service {
                 bm.startRanging(ALL_BEACON);
             }
         });
+        preference.putData("prevHour", 100);
         bm.setRangingListener(new BeaconManager.BeaconRangingListener() {
             @Override
             public void onBeaconsDiscovered(BeaconRegion beaconRegion, List<Beacon> list) {
@@ -70,7 +69,6 @@ public class BeaconDetect extends Service {
                 Date date = new Date();
                 SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String strdate = SDF.format(date);
-                preference.putData("prevHour", 100);
                 prevHour = preference.getInt("prevHour");
 
                 if (currentClass != null) {
@@ -84,13 +82,13 @@ public class BeaconDetect extends Service {
                                 if (currentClass.get("beaconmajor").equals(Integer.toString(B.getMajor()))) {
                                     Log.d(TAG, "onBeaconsDiscovered: " + "6번 테스트" + strdate);
 
-                                    InsertData ID = new InsertData("attendant");
+
                                     if(date.getMinutes()<10) {
                                         ID.execute(classcode, strdate, GlobalVariables.userCode, "1");
                                     }else {
                                         ID.execute(classcode, strdate, GlobalVariables.userCode, "2");
                                     }
-                                    preference.putData("prevHour", 100);
+                                    preference.putData("prevHour", prevHour);
                                     Log.d(TAG, "onBeaconsDiscovered: " + "7번 테스트");
                                 }
                             }

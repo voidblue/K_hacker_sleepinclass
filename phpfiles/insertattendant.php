@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+
 $link=mysqli_connect("localhost","root","root", "k-hack" );
 if (!$link)
 {
@@ -12,12 +15,12 @@ mysqli_set_charset($link,"utf8");
 
 $classcode=isset($_POST['classcode']) ? $_POST['classcode'] : '';
 $date=isset($_POST['date'] ? $_POST['date'] : '';
-$sudentcode=isset($_POST['studentcode']) ? $_POST['studentcode'] : '';
+$studentcode=isset($_POST['studentcode']) ? $_POST['studentcode'] : '';
 $ischecked=isset($_POST['ischecked']) ? $_POST['ischecked'] : '';
 
-if($classcode !="" and $date !="" and $studentcode !="" and $ $ischecked !=""){
+if($classcode !="" and $date !="" and $studentcode !="" and $ischecked !=""){
 
-  $sql="insert into attendanttable(classcode, date, studentcode, ischecked) values('$classcode','$date','$studenttable','$ischecked')";
+  $sql="insert into attendanttable(classcode, date, studentcode, ischecked) values('$classcode','$date','$studentcode','$ischecked')";
   $result=mysqli_query($link, $sql);
 
   if($result){
@@ -36,9 +39,10 @@ if($classcode !="" and $date !="" and $studentcode !="" and $ $ischecked !=""){
 mysqli_close($link);
 
 ?>
+
 <?php
 
-$android = strpos(SERVER['HTTP_USER_AGENT'], "Android");
+$android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
 
 if(!$android){
    ?>
