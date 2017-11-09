@@ -15,7 +15,7 @@ $date=isset($_POST['date'] ? $_POST['date'] : '';
 $sudentcode=isset($_POST['studentcode']) ? $_POST['studentcode'] : '';
 $ischecked=isset($_POST['ischecked']) ? $_POST['ischecked'] : '';
 
-if($classcode !="" and $date !="" and $studentcode !="" and $ $ischecked ){
+if($classcode !="" and $date !="" and $studentcode !="" and $ $ischecked !=""){
 
   $sql="insert into attendanttable(classcode, date, studentcode, ischecked) values('$classcode','$date','$studenttable','$ischecked')";
   $result=mysqli_query($link, $sql);
